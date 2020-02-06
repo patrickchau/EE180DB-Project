@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Net; 
 using System.Net.Sockets; 
 using System.Text;
+using System.Threading;
 
 public class Joey: MonoBehaviour {
 
@@ -10,8 +11,8 @@ public class Joey: MonoBehaviour {
     void Start () {
         // Usually the server doesn't need to draw anything on the screen
         Debug.Log("Joey Miller");
-        CreateServer();
-
+        Thread thr2 = new Thread(CreateServer);
+        thr2.Start();
     }    
 
     void CreateServer() {
@@ -37,7 +38,7 @@ public class Joey: MonoBehaviour {
         	listener.Listen(10); 
         	while (true) { 
               
-	            Console.WriteLine("Waiting connection ... "); 
+	            Debug.Log("Waiting connection ... "); 
 	  
 	            // Suspend while waiting for 
 	            // incoming connection Using  
@@ -50,17 +51,17 @@ public class Joey: MonoBehaviour {
 	            string data = null; 
   
             	while (true) { 
-  
+                    Debug.Log("forever");
 	                int numByte = clientSocket.Receive(bytes); 
 	                  
 	                data += Encoding.ASCII.GetString(bytes, 
 	                                           0, numByte); 
 	                                             
-	                if (data.IndexOf("<EOF>") > -1) 
+	                if (data.IndexOf("#") > -1) 
 	                    break; 
             	} 
 
-            Console.WriteLine("Text received -> {0} ", data); 
+            Debug.Log(data); 
             byte[] message = Encoding.ASCII.GetBytes("Test Server"); 
   
             // Send a message to Client  
