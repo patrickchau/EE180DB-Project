@@ -1,0 +1,11 @@
+UDP client connection between OpenCV and Unity
+Unity -> OpenCV : which user we need to display
+OpenCV -> Unity : the bounding box on the image that displays chosen user
+OpenCV handles all the processing. Unity only displays in application
+Both applications share the same webcam stream
+get all 4 players initially. opencv won't always send an update so
+need to make sure that each rect is associated with right face
+
+cant both access the same webcam stream at the same time so need to write
+an image from the stream and then have python read in the image into
+opencv
