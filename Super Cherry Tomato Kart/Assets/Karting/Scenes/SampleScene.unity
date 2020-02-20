@@ -811,6 +811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 106555693}
   - component: {fileID: 106555694}
+  - component: {fileID: 106555695}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -845,6 +846,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   port: 7575
+--- !u!114 &106555695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106555692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74b170d0ff9df7147950d69daed928fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pwr1:
+  - quick
+  - stop
+  - paint
+  - shrink
+  - invincible
 --- !u!1001 &119561715
 PrefabInstance:
   m_ObjectHideFlags: 0
