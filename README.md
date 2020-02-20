@@ -1,1 +1,0 @@
-EE180DB-Project: Karting
