@@ -49,11 +49,11 @@ def draw_rects(img, rects, color):
     for x1, y1, x2, y2 in rects:
         cv.rectangle(img, (x1, y1), (x2, y2), color, 2)
 
+# finds the rectangles for the faces
 def find_rects(img, cascade):
-    gray = cv.cvtColor(img.copy(), cv.COLOR_BGR2GRAY)
+    gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     gray = cv.equalizeHist(gray)
     rects = detect(gray, cascade) # the large bounding boxes around faces
-    print (rects)
     return rects
 
 def main():
@@ -77,22 +77,15 @@ def main():
     # 'convenience function for capture creation'
     cam = create_capture(video_src, fallback='synth:bg={}:noise=0.05'.format(cv.samples.findFile('lena.jpg')))
 
-    _ret, img = cam.read()
-    # rects = detect(gray, cascade) # the large bounding boxes around faces
-
     # continuously check the camera and update the bounding boxes
     while True:
         # read from the camera and turn into grayscale
         _ret, img = cam.read()
-        # clock for measuring time in between frames
         
         # find the bounding boxes for faces
         rects = find_rects(img, cascade)
-
-        #gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-        #gray = cv.equalizeHist(gray)
+        # clock for measuring time in between frames
         t = clock() 
-        #rects = detect(gray, cascade) # the large bounding boxes around faces
 
         # draws the rectangles that make up the bounding box
         # vis is the copy of the raw image that we will use for processing, so as to not mess up raw image
@@ -102,7 +95,8 @@ def main():
         # find_color_point will return an image with all other colors except desired color masked out
         # will also have the image of the circle on it
         # see color_detection.py for source code
-        # out = cd.find_color_point(1, vis)
+        # color is 1 = blue, 2 = yellow, 3 = green, 4 = red
+        out = cd.find_color_point(1, vis)
         
         # adds the timestamp in top left
         dt = clock() - t
@@ -119,6 +113,7 @@ def main():
             (x_marg, y_marg) = (0,0)
             (x1,x2,y1,y2) = (0,0,0,0)
             smallest = 25000
+            
             for update in rects:
                 co = '' # x1 y1 x2 y2
                 # for the given origin, find the smallest norm from (x1,y1) of the rect
@@ -138,10 +133,11 @@ def main():
                         count += 1
                     x_marg = x2 - x1
                     y_marg = y2 - y1
-                # sock.sendto( (co).encode(), (UDP_IP, UDP_PORT) )
+                sock.sendto( (co).encode(), (UDP_IP, UDP_PORT) )
+            
             # save the cropped image for unity to pull
             crop_img = img[y1:y1+y_marg, x1:x1+x_marg].copy()
-
+            
             cv.imwrite('fullimage.jpg', img)        # saves raw image 
             cv.imwrite('savedImage.jpg', crop_img)  # saves face image for unity
             sock.sendto( 'updated'.encode(), (UDP_IP, UDP_PORT) )   # sends the coords for face

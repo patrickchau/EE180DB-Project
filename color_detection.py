@@ -4,10 +4,10 @@ import cv2
 
 # values given in HSV space
 boundaries = [
-    ([86,0,0],[120,255,255]),    # blue
-    ([20,0,0],[35,255,255]),    # yellow
-    ([40,0,0],[80,255,255]),    # green
-    ([0,50,20],[15,255,255])     # red / human
+    ([86,0,0],[120,255,255]),       # blue
+    ([20,0,0],[35,255,255]),        # yellow
+    ([40,0,0],[80,255,255]),        # green
+    ([0,50,20],[15,255,255])        # red 
 ]
 
 # need to return the center and draw circles on HSV image
