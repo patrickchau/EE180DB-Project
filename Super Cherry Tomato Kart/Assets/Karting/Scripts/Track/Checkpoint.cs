@@ -6,6 +6,7 @@ namespace KartGame.Track
     /// <summary>
     /// This is used to mark out key points on the track that a racer must pass through in order to count as having completed a lap.
     /// </summary>
+    /// 
     [RequireComponent (typeof(BoxCollider))]
     public class Checkpoint : MonoBehaviour
     {

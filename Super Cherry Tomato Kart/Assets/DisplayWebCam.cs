@@ -48,12 +48,14 @@ public class DisplayWebCam : MonoBehaviour
         {
             try
             {
-                print("trying to pull image");
+                //print("trying to pull image");
                 pull_image();
             }
             catch (Exception e)
             {
-                print(e.ToString());
+                string b = e.ToString();
+                // ignoring exception       
+                //print(e.ToString());
             }
         }
     }

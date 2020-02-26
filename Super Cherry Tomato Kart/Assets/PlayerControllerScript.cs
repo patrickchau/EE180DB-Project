@@ -24,29 +24,19 @@ public class PlayerControllerScript : MonoBehaviour
     void Start()
     {
         ProcessStartInfo psi = new ProcessStartInfo();
-        print("hello world");
         //need to update to wherever the conda installation is
-        //psi.FileName = "\'C:\\Users\\Patrick Chau\\Anaconda3\\envs\\test\\python.exe\'";
         psi.FileName = "\'C:\\Users\\Patrick Chau\\Anaconda3\\_conda.exe\'";
         string script = Path.GetFullPath("FaceDetection\\facedetect.py");
-        print(script);
+        //print(script);
         psi.Arguments = string.Format("python \"{0}\"",script);
-        print(psi.Arguments);
+        //print(psi.Arguments);
         psi.UseShellExecute = false;
         psi.RedirectStandardError = true;
         psi.RedirectStandardInput = true;
         psi.RedirectStandardOutput = true;
-        string errors = "None";
-        string results = "None";
+
         pro = Process.Start(psi);
-            /*
-        using ()
-        {
-            errors = pro.StandardError.ReadToEnd();
-            results = pro.StandardOutput.ReadToEnd();
-        }
-        print(errors+ "    " + results);
-        */
+
         port = 5065; //1 
         InitUDP(); //4
         client = new UdpClient(port); //1
@@ -82,7 +72,7 @@ public class PlayerControllerScript : MonoBehaviour
                 byte[] data = client.Receive(ref anyIP); //4
 
                 text = Encoding.UTF8.GetString(data); //5
-                print(">> " + text);
+                //print(">> " + text);
 
             }
             catch (Exception e)

@@ -96,7 +96,7 @@ def main():
 
         # find_color_point will return an image with all other colors except desired color masked out
         # will also have the image of the circle on it
-        # see color_detection.py for source code
+        # see color_detection.py
         # color is 1 = blue, 2 = yellow, 3 = green, 4 = red
         out = cd.find_color_point(1, vis)
         

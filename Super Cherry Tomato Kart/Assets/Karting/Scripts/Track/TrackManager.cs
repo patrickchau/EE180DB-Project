@@ -11,17 +11,23 @@ namespace KartGame.Track
     /// </summary>
     public class TrackManager : MonoBehaviour
     {
+        /*
+         * player 1 is teal, player 2 is yellow, player 3 is red, player 4 is green
+         * 
+         */
         [Tooltip ("The name of the track in this scene.  Used for track time records.  Must be unique.")]
         public string trackName;
         [Tooltip ("Number of laps for the race.")]
         public int raceLapTotal;
         [Tooltip ("All the checkpoints for the track in the order that they should be completed starting with the start/finish line checkpoint.")]
         public List<Checkpoint> checkpoints = new List<Checkpoint> ();
+        // goes from start/finish -> check1 -> check2 -> check3 and then loops 
         [Tooltip("Reference to an object responsible for repositioning karts.")]
         public KartRepositioner kartRepositioner;
 
         bool m_IsRaceRunning;
         Dictionary<IRacer, Checkpoint> m_RacerNextCheckpoints = new Dictionary<IRacer, Checkpoint> (16);
+        // dictionary of 16 entries so 4 laps, 4 checkpoints each lap
         TrackRecord m_SessionBestLap = TrackRecord.CreateDefault ();
         TrackRecord m_SessionBestRace = TrackRecord.CreateDefault ();
         TrackRecord m_HistoricalBestLap;
@@ -119,6 +125,7 @@ namespace KartGame.Track
                 m_RacerNextCheckpoints.Add (racer, checkpoints[0]);
                 racer.DisableControl ();
             }
+            print(m_RacerNextCheckpoints);
         }
 
         /// <summary>
@@ -180,7 +187,15 @@ namespace KartGame.Track
 
             CheckRacerHitCheckpoint (racer, checkpoint);
         }
+        void checkFirstPlace(IRacer racer, Checkpoint checkpoint)
+        {
+            // first check each racer for having most laps, then most recent checkpoint hit
+            foreach (KeyValuePair<IRacer, Checkpoint> racerNextCheckpoint in m_RacerNextCheckpoints)
+            {
+                racer.GetCurrentLap();
 
+            }
+        }
         void RacerHitCorrectCheckpoint (IRacer racer, Checkpoint checkpoint)
         {
             if (checkpoint.isStartFinishLine)
