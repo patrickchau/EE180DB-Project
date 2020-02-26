@@ -67,15 +67,17 @@ def main():
 
     # pull in the haar cascade classifiers
     # see: https://docs.opencv.org/3.4/db/d28/tutorial_cascade_classifier.html
-    cascade_fn = args.get('--cascade', "haarcascades/haarcascade_frontalface_alt.xml")
-    nested_fn  = args.get('--nested-cascade', "haarcascades/haarcascade_eye.xml")
+    print(abs_path)
+
+    cascade_fn = args.get('--cascade', abs_path+"/haarcascades/haarcascade_frontalface_alt.xml")
+    nested_fn  = args.get('--nested-cascade', abs_path+"/haarcascades/haarcascade_eye.xml")
 
     # files provided from OpenCV sample file for face detection
     cascade = cv.CascadeClassifier(cv.samples.findFile(cascade_fn))
     nested = cv.CascadeClassifier(cv.samples.findFile(nested_fn))
 
     # 'convenience function for capture creation'
-    cam = create_capture(video_src, fallback='synth:bg={}:noise=0.05'.format(cv.samples.findFile('lena.jpg')))
+    cam = create_capture(video_src, fallback='synth:bg={}:noise=0.05'.format(cv.samples.findFile(abs_path+'/lena.jpg')))
 
     # continuously check the camera and update the bounding boxes
     while True:
@@ -115,7 +117,7 @@ def main():
             smallest = 25000
             
             for update in rects:
-                co = '' # x1 y1 x2 y2
+                co = "" # x1 y1 x2 y2
                 # for the given origin, find the smallest norm from (x1,y1) of the rect
                 if math.sqrt( math.pow((origin[0] - update[0]),2) + math.pow((origin[1] - update[1]),2)  )  < smallest:
                     # if a new smallest found, then update the coords
