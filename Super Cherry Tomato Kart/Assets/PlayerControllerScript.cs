@@ -25,11 +25,11 @@ public class PlayerControllerScript : MonoBehaviour
     {
         ProcessStartInfo psi = new ProcessStartInfo();
         //need to update to wherever the conda installation is
-        psi.FileName = "\'C:\\Users\\Patrick Chau\\Anaconda3\\_conda.exe\'";
+        psi.FileName = "\'C:\\Users\\firey\\AppData\\Local\\Programs\\Python\\Python37\\python.exe\'";
         string script = Path.GetFullPath("FaceDetection\\facedetect.py");
         //print(script);
         psi.Arguments = string.Format("python \"{0}\"",script);
-        //print(psi.Arguments);
+        print(psi.Arguments);
         psi.UseShellExecute = false;
         psi.RedirectStandardError = true;
         psi.RedirectStandardInput = true;

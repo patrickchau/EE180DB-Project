@@ -37,6 +37,7 @@ def find_color_point( color, image ):
     # function to ensure compatibility with any version of opencv
     cnts = grab_contours(cnts)
     center = None
+    radius = 0
 
     # given the contours, find a minimum bounding circle
     if len(cnts) > 0:

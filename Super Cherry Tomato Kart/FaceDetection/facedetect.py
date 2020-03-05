@@ -32,7 +32,7 @@ from common import clock, draw_str
 UDP_IP = '127.0.0.1'
 UDP_PORT = 5065
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-abs_path = os.path.dirname(__file__)                       # local path
+abs_path = os.path.dirname(os.path.abspath(__file__))                   # local path
 rel_path = 'img.png'
 
 # detects all the faces and assigns bounding boxes to them
