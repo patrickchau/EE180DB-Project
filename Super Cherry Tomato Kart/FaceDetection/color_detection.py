@@ -36,7 +36,7 @@ def find_color_point( color, image ):
     cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     # function to ensure compatibility with any version of opencv
     cnts = grab_contours(cnts)
-    center = None
+    (x,y) = (0,0)
 
     # given the contours, find a minimum bounding circle
     if len(cnts) > 0:
@@ -47,15 +47,13 @@ def find_color_point( color, image ):
         center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
 
 	# only proceed if the radius meets a minimum size
-    if radius > 10:
+    #if radius > 10:
 		# draws the circle onto the original image
-        cv2.circle(image, (int(x), int(y)), int(radius),
-            (0, 255, 255), 2)
-        cv2.circle(image, center, 5, (0, 0, 255), -1)
+        #cv2.circle(image, (int(x), int(y)), int(radius),
+        #    (0, 255, 255), 2)
+        #cv2.circle(image, center, 5, (0, 0, 255), -1)
     
-    # convert the masked image back to BGR for display
-    converted = cv2.cvtColor(output,cv2.COLOR_HSV2BGR)
-    return converted
+    return (x,y)
 
 def get_color_mask(color, image):
     # assuming that image is given in HSV

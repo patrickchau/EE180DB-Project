@@ -31,11 +31,12 @@ public class PlayerControllerScript : MonoBehaviour
         psi.Arguments = string.Format("python \"{0}\"",script);
         //print(psi.Arguments);
         psi.UseShellExecute = false;
-        psi.RedirectStandardError = true;
-        psi.RedirectStandardInput = true;
-        psi.RedirectStandardOutput = true;
+        //psi.RedirectStandardError = true;
+        //psi.RedirectStandardInput = true;
+        //psi.RedirectStandardOutput = true;
 
         pro = Process.Start(psi);
+
 
         port = 5065; //1 
         InitUDP(); //4
@@ -61,8 +62,6 @@ public class PlayerControllerScript : MonoBehaviour
     // 4. Receive Data
     private void ReceiveData()
     {
-
-
         while (true) //2
         {
             string text = "";

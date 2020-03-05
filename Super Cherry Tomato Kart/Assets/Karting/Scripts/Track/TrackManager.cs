@@ -193,9 +193,10 @@ namespace KartGame.Track
             foreach (KeyValuePair<IRacer, Checkpoint> racerNextCheckpoint in m_RacerNextCheckpoints)
             {
                 racer.GetCurrentLap();
-
+                print("Hello world!");
             }
         }
+
         void RacerHitCorrectCheckpoint (IRacer racer, Checkpoint checkpoint)
         {
             if (checkpoint.isStartFinishLine)
