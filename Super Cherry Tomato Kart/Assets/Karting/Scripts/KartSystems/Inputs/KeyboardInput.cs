@@ -44,6 +44,39 @@ namespace KartGame.KartSystems
 
         bool m_FixedUpdateHappened;
 
+        void Update()
+        {
+            if (Input.GetKey(KeyCode.UpArrow))
+                m_Acceleration = 1f;
+            else if (Input.GetKey(KeyCode.DownArrow))
+                m_Acceleration = -1f;
+            else
+                m_Acceleration = 0f;
+
+            if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
+                m_Steering = -1f;
+            else if (!Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
+                m_Steering = 1f;
+            else
+                m_Steering = 0f;
+
+            m_HopHeld = Input.GetKey(KeyCode.Space);
+
+            if (m_FixedUpdateHappened)
+            {
+                m_FixedUpdateHappened = false;
+
+                m_HopPressed = false;
+                m_BoostPressed = false;
+                m_FirePressed = false;
+            }
+
+            m_HopPressed |= Input.GetKeyDown(KeyCode.Space);
+            m_BoostPressed |= Input.GetKeyDown(KeyCode.RightShift);
+            m_FirePressed |= Input.GetKeyDown(KeyCode.RightControl);
+        }
+
+        /*
         void Update ()
         {
             if (gameObject.name == "Player 1") {
@@ -135,6 +168,7 @@ namespace KartGame.KartSystems
 
             m_hopHeldLastFrame = m_HopHeld;
         }
+        */
 
         void FixedUpdate ()
         {

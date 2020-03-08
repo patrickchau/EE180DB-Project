@@ -33,6 +33,7 @@ namespace KartGame.Track
         TrackRecord m_HistoricalBestLap;
         TrackRecord m_HistoricalBestRace;
 
+        public int[] places = { 1, 2, 3, 4 };
         public bool IsRaceRunning => m_IsRaceRunning;
 
         /// <summary>
@@ -127,7 +128,16 @@ namespace KartGame.Track
             }
             print(m_RacerNextCheckpoints);
         }
-
+        void checkFirstPlace(IRacer racer, Checkpoint checkpoint)
+        {
+            // first check each racer for having most laps, then most recent checkpoint hit
+            foreach (KeyValuePair<IRacer, Checkpoint> racerNextCheckpoint in m_RacerNextCheckpoints)
+            {
+                //racer.GetName();
+                //racer.GetCurrentLap();
+                print( "Name of racer: " + racer.GetName() + "    Current Lap: " + racer.GetCurrentLap());
+            }
+        }
         /// <summary>
         /// Starts the timers and enables control of all racers.
         /// </summary>
@@ -166,7 +176,8 @@ namespace KartGame.Track
                 StartCoroutine (CallWhenRaceStarts (racer, checkpoint));
                 return;
             }
-
+            checkFirstPlace(racer, checkpoint);
+            // racer has hit the correct checkpoint
             if (m_RacerNextCheckpoints.ContainsKeyValuePair (racer, checkpoint))
             {
                 m_RacerNextCheckpoints[racer] = checkpoints.GetNextInCycle (checkpoint);
@@ -174,6 +185,7 @@ namespace KartGame.Track
             }
             else
             {
+                // racer has not hit the correct checkpoint
                 RacerHitIncorrectCheckpoint (racer, checkpoint);
             }
         }
@@ -187,15 +199,7 @@ namespace KartGame.Track
 
             CheckRacerHitCheckpoint (racer, checkpoint);
         }
-        void checkFirstPlace(IRacer racer, Checkpoint checkpoint)
-        {
-            // first check each racer for having most laps, then most recent checkpoint hit
-            foreach (KeyValuePair<IRacer, Checkpoint> racerNextCheckpoint in m_RacerNextCheckpoints)
-            {
-                racer.GetCurrentLap();
-                print("Hello world!");
-            }
-        }
+        
 
         void RacerHitCorrectCheckpoint (IRacer racer, Checkpoint checkpoint)
         {

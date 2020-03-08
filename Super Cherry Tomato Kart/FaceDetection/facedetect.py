@@ -33,7 +33,8 @@ _RED = (0, 0, 255)
 _BLUE = (255, 0, 0)
 _YELLOW = (0, 255, 255)
 color = (_BLUE, _YELLOW, _GREEN, _RED)
-_MAX_CYCLE_COUNT_ = 50
+_MAX_CYCLE_COUNT_ = 10
+__DEBUG__ = 0
 
 # detects all the faces and assigns bounding boxes to them
 def detect(img, cascade): 
@@ -203,11 +204,13 @@ def main():
     rects = [(0,0,0,0)]
     # wait for 4 people to come into frame. left to right is blue yellow green red
     # blue = player 1, yellow = player 2, green = player 3, red = player 4
-    while (len(rects) < 4):
-        _ret, img = cam.read()
-        print(len(rects))
-        rects = find_rects(img, cascade)
-        rects=sorted(rects,key=sortFunc)
+    if __DEBUG__:
+        while (len(rects) < 4):
+            _ret, img = cam.read()
+            print(len(rects))
+            rects = find_rects(img, cascade)
+            rects=sorted(rects,key=sortFunc)
+
     cycle_count = 0
     # players ordered from 1 to 4 in order of the array from left to right
 
@@ -279,11 +282,12 @@ def main():
             
             # save the cropped image for unity to pull
             crop_img = img[y1:y1+y_marg, x1:x1+x_marg].copy()
+            if (crop_img.size != 0): # only write if the image actually exists
+                cv.imwrite('fullimage.jpg', img)        # saves raw image 
+                cv.imwrite('savedImage.jpg', crop_img)  # saves face image for unity
+                sock.sendto( 'updated'.encode(), (UDP_IP, UDP_PORT) )   # sends the coords for face
             
-            cv.imwrite('fullimage.jpg', img)        # saves raw image 
-            cv.imwrite('savedImage.jpg', crop_img)  # saves face image for unity
-            sock.sendto( 'updated'.encode(), (UDP_IP, UDP_PORT) )   # sends the coords for face
-
+            
         # exit out of program if pressing escape
         if cv.waitKey(5) == 27:
             break
