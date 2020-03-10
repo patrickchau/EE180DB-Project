@@ -213,15 +213,17 @@ def main():
     # 'convenience function for capture creation'
     cam = create_capture(video_src, fallback='synth:bg={}:noise=0.05:size=1280x1024'.format(cv.samples.findFile(abs_path+'/lena.jpg')))
     
+    img = cv.imread(abs_path+"/index2.jpg")
+    #_ret, img = cam.read()
+
     # take an initial reading of the rects
     # from left to right from the view of the camera, we will have players 1 to 4 w/ 0,0 as the upper left
     # blue = player 1, yellow = player 2, green = player 3, red = player 4
     rects = [(0,0,0,0)]
-
+    new_rects = find_rects(img, cascade)
+    rects, cycle_count = update_rects(rects, new_rects, cycle_count)
+    rects=sorted(rects,key=sortFunc)
     # test image
-    img = cv.imread(abs_path+"/index2.jpg")
-    
-
     
     # continuously check the camera and update the bounding boxes 
     while True:
@@ -236,7 +238,7 @@ def main():
         # find the bounding boxes for faces
         new_rects = find_rects(img, cascade)
         rects, cycle_count = update_rects(rects, new_rects, cycle_count)
-        rects=sorted(rects,key=sortFunc)
+        
         # clock for measuring time in between frames
         t = clock() 
 

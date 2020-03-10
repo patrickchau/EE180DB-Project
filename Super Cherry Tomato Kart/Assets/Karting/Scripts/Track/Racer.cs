@@ -66,6 +66,14 @@ namespace KartGame.Track
             return m_Timer;
         }
 
+        public float[] GetPosition()
+        {
+            float x = transform.position.x;
+            float z = transform.position.z;
+            float[] x_z = { x, z };
+            return x_z;
+        }
+
         public float GetRaceTime ()
         {
             float raceTime = m_Timer;

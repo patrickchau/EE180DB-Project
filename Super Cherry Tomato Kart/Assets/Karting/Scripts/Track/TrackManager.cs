@@ -37,6 +37,8 @@ namespace KartGame.Track
         public bool IsRaceRunning => m_IsRaceRunning;
         public int firstPlace = 1;
         public float[] lapTimes = { 0.0f, 0.0f, 0.0f, 0.0f };
+        public float[,] positions = new float[4, 2];
+        public float[,] cp_pos = new float[4, 2];
 
         /// <summary>
         /// Returns the player number currently in first place.
@@ -44,6 +46,11 @@ namespace KartGame.Track
         public string GetFirstPlace()
         {
             return firstPlace.ToString();
+        }
+
+        public void Update()
+        {
+            checkFirstPlace();
         }
 
         /// <summary>
@@ -137,39 +144,41 @@ namespace KartGame.Track
                 racer.DisableControl ();
             }
             print(m_RacerNextCheckpoints);
+            
         }
-        void checkFirstPlace(IRacer racer, Checkpoint checkpoint)
+
+        void checkFirstPlace()
         {
-            // upon hitting the correct checkpoint, increment a counter and record the timer. 
-            // if two people on the same checkpoint, then tiebreak with the smaller time.
-            // keep track of total time when laptime rolls over
-            string name = racer.GetName();
-            int m = 0;
-            switch (name)
+            //update positions for all
+            foreach (KeyValuePair<IRacer, Checkpoint> racerNextCheckpoint in m_RacerNextCheckpoints)
             {
-                case "Player 1":
-                    m = 0;
-                    break;
-                case "Player 2":
-                    m = 1;
-                    break;
-                case "Player 3":
-                    m = 2;
-                    break;
-                case "Player 4":
-                    m = 3;
-                    break;
+                string name = racerNextCheckpoint.Key.GetName();
+                int m = 0;
+                switch (name)
+                {
+                    case "Player 1":
+                        m = 0;
+                        break;
+                    case "Player 2":
+                        m = 1;
+                        break;
+                    case "Player 3":
+                        m = 2;
+                        break;
+                    case "Player 4":
+                        m = 3;
+                        break;
+                }
+                float[] position = racerNextCheckpoint.Key.GetPosition();
+                positions[m, 0] = position[0];
+                positions[m, 1] = position[1];
+                float[] cp_position = racerNextCheckpoint.Value.GetPosition();
+                cp_pos[m, 0] = cp_position[0];
+                cp_pos[m, 1] = cp_position[1];
             }
-
-            //print(lapTimes[m]);
-            places[m]++;
-            lapTimes[m] = racer.GetRaceTime();
-
-            //print("This is player " + (m+1) );
-            //print("Current checkpoint: " + places[m]);
-
+            // now determine first place
             int index = 0;
-            for (int i = 1; i < places.Length ; i++)
+            for (int i = 1; i < places.Length; i++)
             {
                 if (places[i] > places[index])
                 {
@@ -177,8 +186,17 @@ namespace KartGame.Track
                 }
                 else if (places[i] == places[index])
                 {
-                    // then we need to tiebreak based on laptimes
-                    if (lapTimes[i] < lapTimes[index])
+                    double dif_i_x = positions[i, 0] - cp_pos[i, 0];
+                    double dif_i_y = positions[i, 1] - cp_pos[i, 1];
+                    double dif_index_x = positions[index, 0] - cp_pos[index, 0];
+                    double dif_index_y = positions[index, 0] - cp_pos[index, 0];
+                    // get the checkpoint for racer i and racer index
+                    double dis_i = System.Math.Sqrt( System.Math.Pow( dif_i_x, 2.0 ) 
+                        + System.Math.Pow(dif_i_y, 2.0 ) );
+                    double dis_index = System.Math.Sqrt(System.Math.Pow(dif_index_x, 2.0)
+                        + System.Math.Pow(dif_index_y, 2.0));
+                    // then we need to tiebreak distance to next checkpoint
+                    if ( dis_i < dis_index )
                     {
                         // then current player is firstplace
                         index = i;
@@ -187,7 +205,7 @@ namespace KartGame.Track
                 }
             }
             firstPlace = index + 1;
-            //print("Current player in first place: " + firstPlace);
+            print("Current player in first place: " + firstPlace);
         }
         /// <summary>
         /// Starts the timers and enables control of all racers.
@@ -202,7 +220,7 @@ namespace KartGame.Track
                 racerNextCheckpoint.Key.UnpauseTimer ();
             }
         }
-
+        
         /// <summary>
         /// Stops the timers and disables control of all racers, also saves the historical records.
         /// </summary>
@@ -220,6 +238,29 @@ namespace KartGame.Track
             TrackRecord.Save (m_HistoricalBestRace);
         }
 
+        void add_point(IRacer racer, Checkpoint checkpoint)
+        {
+            // update values for each
+            string name = racer.GetName();
+            int m = 0;
+            switch (name)
+            {
+                case "Player 1":
+                    m = 0;
+                    break;
+                case "Player 2":
+                    m = 1;
+                    break;
+                case "Player 3":
+                    m = 2;
+                    break;
+                case "Player 4":
+                    m = 3;
+                    break;
+            }
+            places[m]++;
+        }
+
         void CheckRacerHitCheckpoint (IRacer racer, Checkpoint checkpoint)
         {
             if (!m_IsRaceRunning)
@@ -230,7 +271,7 @@ namespace KartGame.Track
             // racer has hit the correct checkpoint
             if (m_RacerNextCheckpoints.ContainsKeyValuePair (racer, checkpoint))
             {
-                checkFirstPlace(racer, checkpoint);
+                add_point(racer, checkpoint);
                 m_RacerNextCheckpoints[racer] = checkpoints.GetNextInCycle (checkpoint);
                 RacerHitCorrectCheckpoint (racer, checkpoint);
             }

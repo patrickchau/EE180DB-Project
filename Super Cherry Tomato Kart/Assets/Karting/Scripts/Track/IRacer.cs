@@ -48,5 +48,8 @@ namespace KartGame.Track
         /// Gets the name of the racer for scoreboards and records.
         /// </summary>
         string GetName ();
+
+
+        float[] GetPosition();
     }
 }

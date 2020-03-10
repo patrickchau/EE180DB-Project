@@ -34,6 +34,14 @@ namespace KartGame.Track
             kartLayers = LayerMask.GetMask ("Default");
         }
 
+        public float[] GetPosition()
+        {
+            float x = transform.position.x;
+            float z = transform.position.z;
+            float[] x_z = { x, z };
+            return x_z;
+        }
+
         void Start ()
         {
             float boxColliderHeight = GetComponent<BoxCollider> ().size.y;
