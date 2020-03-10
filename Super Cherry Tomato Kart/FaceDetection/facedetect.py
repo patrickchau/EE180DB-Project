@@ -32,9 +32,10 @@ _GREEN = (0, 255, 0)
 _RED = (0, 0, 255)
 _BLUE = (255, 0, 0)
 _YELLOW = (0, 255, 255)
-color = (_BLUE, _YELLOW, _GREEN, _RED)
+color = (_BLUE, _YELLOW, _RED, _GREEN)
 _MAX_CYCLE_COUNT_ = 10
 __DEBUG__ = 0
+_FIRST_PLACE = 1
 
 # detects all the faces and assigns bounding boxes to them
 def detect(img, cascade): 
@@ -94,7 +95,7 @@ def update_rects(old, new, cycle_count):
         distances.append(temp_dist)
     # distances will be a list of lists
     # entries 0-3: distances from first face, entries 4-7 distances from second face...
-    #print("All calculated distances: " + str(distances))
+    # print("All calculated distances: " + str(distances))
     i = 0
     ind = []
     amt = len(m_new)
@@ -121,6 +122,7 @@ def update_rects(old, new, cycle_count):
                     sorted_dis.sort()
                     #print("Sorted distances: " + str(sorted_dis))
                     enum = 1
+                    # ensure uniqueness
                     while(enum < len(sorted_dis)):
                         if cur_dis_list.index(sorted_dis[enum]) in ind: 
                             enum += 1
@@ -141,15 +143,14 @@ def update_rects(old, new, cycle_count):
                             enum = len(sorted_ret)
             ind.append(min_idx)    
         # now that all existing inds are updated, see if we can add more
+        # check to see what indices don't exist and then add them
         if (len(ind) < amt):
-            # now check to see what indices don't exist and then add them
             indices = list(range(0, amt))
             remainder_set = set(indices) - set(ind)
             for addition in remainder_set:
                 if (len(ind) < 4):
                     ind.append(addition)
         # now remove any repeated indices
-        # ind = list(set(ind))
         working_ind = ind.copy()
         has_seen = []
         m = 0
@@ -162,10 +163,10 @@ def update_rects(old, new, cycle_count):
             m += 1
         ind = working_ind
          # now all values are updated and unique
-        #print(ind)
         for val in ind:
             rect_update.append(m_new[val])
-        #print("Length of new rect update: " + str(len(rect_update)))
+
+        # if update list is greater than 4, truncate to only 4
         if len(rect_update) > 4:
             rect_update = rect_update[0:4]
         #print("Chosen update points" + str(rect_update))
@@ -174,6 +175,16 @@ def update_rects(old, new, cycle_count):
 
 def sortFunc(e):
     return e[0]
+
+def readServer(c): # take in server messages
+  buffer = None
+  c.settimeout(0.001)  # wait 1 second before throwing an exception
+  try:
+    mess, address = c.recvfrom(1024)
+    buffer = mess.decode('utf-8')
+  except socket.timeout: 
+    print("buffer is empty")
+  return buffer
 
 def main():
     # first see if there is access to a webcam to use as source
@@ -186,8 +197,12 @@ def main():
 
     # pull in the haar cascade classifiers
     # see: https://docs.opencv.org/3.4/db/d28/tutorial_cascade_classifier.html
-    #print(abs_path)
 
+    # values used in the calculation
+    _FIRST_PLACE = 1
+    cycle_count = 0
+
+    #functions for cascade and nested face detection
     cascade_fn = args.get('--cascade', abs_path+"/haarcascades/haarcascade_frontalface_alt.xml")
     nested_fn  = args.get('--nested-cascade', abs_path+"/haarcascades/haarcascade_eye.xml")
 
@@ -197,33 +212,31 @@ def main():
 
     # 'convenience function for capture creation'
     cam = create_capture(video_src, fallback='synth:bg={}:noise=0.05:size=1280x1024'.format(cv.samples.findFile(abs_path+'/lena.jpg')))
-
+    
     # take an initial reading of the rects
     # from left to right from the view of the camera, we will have players 1 to 4 w/ 0,0 as the upper left
-    
-    rects = [(0,0,0,0)]
-    # wait for 4 people to come into frame. left to right is blue yellow green red
     # blue = player 1, yellow = player 2, green = player 3, red = player 4
-    if __DEBUG__:
-        while (len(rects) < 4):
-            _ret, img = cam.read()
-            print(len(rects))
-            rects = find_rects(img, cascade)
-            rects=sorted(rects,key=sortFunc)
+    rects = [(0,0,0,0)]
 
-    cycle_count = 0
-    # players ordered from 1 to 4 in order of the array from left to right
+    # test image
+    img = cv.imread(abs_path+"/index2.jpg")
+    
 
+    
     # continuously check the camera and update the bounding boxes 
     while True:
+        # first retrieve message from game to see which face to display
+        place = readServer(sock)
+        if place != None and place != "nothing":
+            _FIRST_PLACE = int(place)
+            print("First place is now " + str(_FIRST_PLACE))
         # read from the camera and turn into grayscale
-        _ret, img = cam.read()
+        #_ret, img = cam.read()
         
         # find the bounding boxes for faces
         new_rects = find_rects(img, cascade)
-        # TODO: persist a face for multiple cycles before deleting
         rects, cycle_count = update_rects(rects, new_rects, cycle_count)
-        #rects = find_rects(img, cascade)
+        rects=sorted(rects,key=sortFunc)
         # clock for measuring time in between frames
         t = clock() 
 
@@ -236,6 +249,7 @@ def main():
         # will also have the image of the circle on it
         # see color_detection.py
         # color is 1 = blue, 2 = yellow, 3 = green, 4 = red
+        """
         out = cd.find_color_point(3, vis)
         centers = get_centroids(rects)
         for center in get_centroids(rects):
@@ -245,14 +259,17 @@ def main():
         # adds the timestamp in top left
         dt = clock() - t
         draw_str(vis, (20, 20), 'time: %.1f ms' % (dt*1000))
-
+        """
         # draw the image after all has been put onto it
         cv.imshow('facedetect', vis)
 
         # goal here is to get the circle and the raw image 
         # so we need to pass the center and the image on the raw image
         # currently set to only save the image of the person on the left hand side of screen
+
+        
         if (len(rects) > 0):    # if rects is not empty, update on unity end
+            """
             origin = out # the point from which distances are calc'd
             #print(origin)
             (x_marg, y_marg) = (0,0)
@@ -278,8 +295,27 @@ def main():
                         count += 1
                     x_marg = x2 - x1
                     y_marg = y2 - y1
-                sock.sendto( (co).encode(), (UDP_IP, UDP_PORT) )
-            
+                sock.sendto( (co).encode(), (UDP_IP, UDP_PORT) 
+            """
+            update = rects[_FIRST_PLACE - 1]
+            (x_marg, y_marg) = (0,0)
+            (x1,x2,y1,y2) = (0,0,0,0)
+
+            count = 0
+            for coord in update:
+                if count == 0:
+                    x1 = coord
+                elif count == 1:
+                    y1 = coord
+                elif count == 2:
+                    x2 = coord
+                elif count == 3:
+                    y2 = coord
+                count += 1
+
+            x_marg = x2 - x1
+            y_marg = y2 - y1
+
             # save the cropped image for unity to pull
             crop_img = img[y1:y1+y_marg, x1:x1+x_marg].copy()
             if (crop_img.size != 0): # only write if the image actually exists

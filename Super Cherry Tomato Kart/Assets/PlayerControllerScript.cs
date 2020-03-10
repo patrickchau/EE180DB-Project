@@ -14,11 +14,14 @@ public class PlayerControllerScript : MonoBehaviour
 
     // 1. Declare Variables
     Thread receiveThread; //1
+    Thread sendThread;
     UdpClient client; //2
     int port; //3
     GameObject go;
+    GameObject fp;
     DisplayWebCam web;
     Process pro;
+    KartGame.Track.TrackManager tp;
 
     // 2. Initialize variables
     void Start()
@@ -34,6 +37,7 @@ public class PlayerControllerScript : MonoBehaviour
         //psi.RedirectStandardError = true;
         //psi.RedirectStandardInput = true;
         //psi.RedirectStandardOutput = true;
+        //psi.CreateNoWindow = true;
 
         pro = Process.Start(psi);
 
@@ -43,6 +47,9 @@ public class PlayerControllerScript : MonoBehaviour
         client = new UdpClient(port); //1
         go = GameObject.Find("Cube");
         web = go.GetComponent<DisplayWebCam>();
+        fp = GameObject.Find("TrackManager");
+        tp = fp.GetComponent<KartGame.Track.TrackManager>();
+
     }
     private void OnApplicationQuit()
     {
@@ -62,22 +69,33 @@ public class PlayerControllerScript : MonoBehaviour
     // 4. Receive Data
     private void ReceiveData()
     {
+        string received = "";
         while (true) //2
         {
             string text = "";
             try
             {
                 IPEndPoint anyIP = new IPEndPoint(IPAddress.Parse("0.0.0.0"), port); //3
+   
+                // receive data
                 byte[] data = client.Receive(ref anyIP); //4
-
                 text = Encoding.UTF8.GetString(data); //5
-                //print(">> " + text);
 
+                // try to send data, only send if there is an update in first place
+                string fi = tp.GetFirstPlace();
+                //print("fi: " + fi + "   text:" + received + "   Equality?: " + fi.Equals(received));
+                if(!fi.Equals(received))
+                {
+                    //print("First place updated! First place player is now " + fi);
+                    received = fi;
+                    byte[] sendData = Encoding.UTF8.GetBytes(received);
+                    client.Send(sendData, sendData.Length, anyIP);
+                }
             }
             catch (Exception e)
             {
                 // print out error type
-                print(e.ToString()); //7
+                //print(e.ToString()); //7
             }
 
             if (!(string.IsNullOrEmpty(text)))

@@ -33,8 +33,18 @@ namespace KartGame.Track
         TrackRecord m_HistoricalBestLap;
         TrackRecord m_HistoricalBestRace;
 
-        public int[] places = { 1, 2, 3, 4 };
+        public int[] places = { 0,0,0,0 };
         public bool IsRaceRunning => m_IsRaceRunning;
+        public int firstPlace = 1;
+        public float[] lapTimes = { 0.0f, 0.0f, 0.0f, 0.0f };
+
+        /// <summary>
+        /// Returns the player number currently in first place.
+        /// </summary>
+        public string GetFirstPlace()
+        {
+            return firstPlace.ToString();
+        }
 
         /// <summary>
         /// Returns the best lap time recorded this session.  If no record is found, -1 is returned.
@@ -130,13 +140,54 @@ namespace KartGame.Track
         }
         void checkFirstPlace(IRacer racer, Checkpoint checkpoint)
         {
-            // first check each racer for having most laps, then most recent checkpoint hit
-            foreach (KeyValuePair<IRacer, Checkpoint> racerNextCheckpoint in m_RacerNextCheckpoints)
+            // upon hitting the correct checkpoint, increment a counter and record the timer. 
+            // if two people on the same checkpoint, then tiebreak with the smaller time.
+            // keep track of total time when laptime rolls over
+            string name = racer.GetName();
+            int m = 0;
+            switch (name)
             {
-                //racer.GetName();
-                //racer.GetCurrentLap();
-                print( "Name of racer: " + racer.GetName() + "    Current Lap: " + racer.GetCurrentLap());
+                case "Player 1":
+                    m = 0;
+                    break;
+                case "Player 2":
+                    m = 1;
+                    break;
+                case "Player 3":
+                    m = 2;
+                    break;
+                case "Player 4":
+                    m = 3;
+                    break;
             }
+
+            //print(lapTimes[m]);
+            places[m]++;
+            lapTimes[m] = racer.GetRaceTime();
+
+            //print("This is player " + (m+1) );
+            //print("Current checkpoint: " + places[m]);
+
+            int index = 0;
+            for (int i = 1; i < places.Length ; i++)
+            {
+                if (places[i] > places[index])
+                {
+                    index = i;
+                }
+                else if (places[i] == places[index])
+                {
+                    // then we need to tiebreak based on laptimes
+                    if (lapTimes[i] < lapTimes[index])
+                    {
+                        // then current player is firstplace
+                        index = i;
+                    }
+                    //otherwise nothing changes
+                }
+            }
+            firstPlace = index + 1;
+            //print("Current player in first place: " + firstPlace);
         }
         /// <summary>
         /// Starts the timers and enables control of all racers.
@@ -176,10 +227,10 @@ namespace KartGame.Track
                 StartCoroutine (CallWhenRaceStarts (racer, checkpoint));
                 return;
             }
-            checkFirstPlace(racer, checkpoint);
             // racer has hit the correct checkpoint
             if (m_RacerNextCheckpoints.ContainsKeyValuePair (racer, checkpoint))
             {
+                checkFirstPlace(racer, checkpoint);
                 m_RacerNextCheckpoints[racer] = checkpoints.GetNextInCycle (checkpoint);
                 RacerHitCorrectCheckpoint (racer, checkpoint);
             }
