@@ -160,7 +160,7 @@ def each_client(c):
             data="registered"
             c.send(data.encode('utf-8'))
         elif _type == "pushed":
-            macToClient[macId].buttons = macToClient[macId].player + msg[0:9]
+            macToClient[macId].buttons = macToClient[macId].player + msg[0:11]
         elif _type=="close":
             # if client sends close request separate from socket timeout
             print("this is a closing message")

@@ -145,26 +145,26 @@ public class Game_Server : MonoBehaviour
     {
         
 
-        if (data.Length >= 12 && data.Substring(0,3) == "P1:") {
-            Player1_Buttons = data.Substring(3, 9);
+        if (data.Length >= 14 && data.Substring(0,3) == "P1:") {
+            Player1_Buttons = data.Substring(3, 11);
             Debug.Log("Player 1: " + Player1_Buttons);
         }
 
-        if (data.Length >= 24 && data.Substring(12, 3) == "P2:")
+        if (data.Length >= 26 && data.Substring(14, 3) == "P2:")
         {
             Player2_Buttons = data.Substring(15, 9);
             Debug.Log("Player 2: " + Player2_Buttons);
         }
 
-        if (data.Length >= 36 && data.Substring(24, 3) == "P3:")
+        if (data.Length >= 38 && data.Substring(26, 3) == "P3:")
         {
-            Player3_Buttons = data.Substring(27, 9);
+            Player3_Buttons = data.Substring(29, 9);
             Debug.Log("Player 3: " + Player3_Buttons);
         }
 
-        if (data.Length >= 48 && data.Substring(36, 3) == "P4:")
+        if (data.Length >= 50 && data.Substring(38, 3) == "P4:")
         {
-            Player4_Buttons = data.Substring(39, 9);
+            Player4_Buttons = data.Substring(41, 9);
             Debug.Log("Player 4: " + Player4_Buttons);
         }
     }
