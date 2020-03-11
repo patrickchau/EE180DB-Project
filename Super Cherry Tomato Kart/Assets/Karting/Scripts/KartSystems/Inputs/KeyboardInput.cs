@@ -38,6 +38,9 @@ namespace KartGame.KartSystems
         public MultiplicativeKartModifier shrinkStats;
         public MultiplicativeKartModifier stopStats;
 
+        public ParticleSystem PowerUp;
+        public static string PowerUpObtained = "noone";
+
         float m_Acceleration;
         float m_Steering;
         bool m_HopPressed;
@@ -60,20 +63,27 @@ namespace KartGame.KartSystems
             kart.AddKartModifier(boostStats);
             yield return new WaitForSeconds(lifetime);
             kart.RemoveKartModifier(boostStats);
+            PowerUpObtained = "used";
         }
 
         IEnumerator PaintModifier(float lifetime)
         {
+            
             foreach (Camera c in Camera.allCameras)
             {
-                c.fieldOfView = 0;
-                Debug.Log(c.name);
+                if (c.name != gameObject.name) {
+                    c.fieldOfView = 0;
+                    Debug.Log(c.name);
+                }
             }
-                yield return new WaitForSeconds(lifetime);
+            
+            yield return new WaitForSeconds(lifetime);
+
             foreach (Camera c in Camera.allCameras)
             {
                 c.fieldOfView = 40;
             }
+            PowerUpObtained = "used";
         }
 
         IEnumerator StopModifier(KartGame.KartSystems.KartMovement kart, float lifetime)
@@ -82,6 +92,7 @@ namespace KartGame.KartSystems
             yield return new WaitForSeconds(lifetime);
             kart.RemoveKartModifier(stopStats);
             m_is_stopped = false;
+            PowerUpObtained = "used";
         }
 
         IEnumerator ShrinkModifier(KartGame.KartSystems.KartMovement kart, GameObject gameObject, float lifetime)
@@ -92,9 +103,10 @@ namespace KartGame.KartSystems
             gameObject.transform.localScale = normal;
             kart.RemoveKartModifier(shrinkStats);
             m_shrink_activated = false;
+            PowerUpObtained = "used";
         }
 
-        void HandlePowerUp(GameObject gameObject) {
+        void HandlePowerUp() {
             if (m_HasPowerUp)
             {
                 if (Input.GetKey(KeyCode.B) && UVoiceRec.quick_registered) //Replace later
@@ -103,6 +115,7 @@ namespace KartGame.KartSystems
                     float duration = 1f;
                     var kart = gameObject.GetComponent<KartMovement>();
                     kart.StartCoroutine(KartModifier(kart, duration));
+                    m_HasPowerUp = false;
                 }
 
                 if (Input.GetKey(KeyCode.B) && UVoiceRec.stop_registered) //Replace later
@@ -112,14 +125,15 @@ namespace KartGame.KartSystems
                     float duration = 2.5f;
                     var kart = gameObject.GetComponent<KartMovement>();
                     kart.StartCoroutine(StopModifier(kart, duration));
+                    m_HasPowerUp = false;
                 }
 
                 if (Input.GetKey(KeyCode.B) && UVoiceRec.invincible_registered) //Replace later
                 {
                     UVoiceRec.invincible_registered = false;
-                    float duration = 1f;
                     var kart = gameObject.GetComponent<KartMovement>();
-                    kart.StartCoroutine(KartModifier(kart, duration));
+                    m_HasPowerUp = false;
+                    
                 }
 
                 if (Input.GetKey(KeyCode.B) && UVoiceRec.paint_registered) //Replace later
@@ -128,6 +142,7 @@ namespace KartGame.KartSystems
                     float duration = 4f;
                     var kart = gameObject.GetComponent<KartMovement>();
                     kart.StartCoroutine(PaintModifier(duration));
+                    m_HasPowerUp = false;
                 }
 
                 if (Input.GetKey(KeyCode.B) && UVoiceRec.shrink_registered) //Replace later
@@ -136,35 +151,53 @@ namespace KartGame.KartSystems
                     m_shrink_activated = true;
                     m_protected_from_shrink = true;
                     m_frames_since_activated = 0;
+                    m_HasPowerUp = false;
                 }
             }
         }
 
         void Update ()
         {
-            HandlePowerUp(gameObject);
+            HandlePowerUp();
+
+
+            if (m_HasPowerUp && !PowerUp.isPlaying)
+            {
+                PowerUp.Play();
+            }
+            else if(!m_HasPowerUp && PowerUp.isPlaying)
+            {
+                PowerUp.Stop();
+            }
+
             if (gameObject.name == "Player 1") {
-                m_HasPowerUp = true;
                 
                 if ((Game_Server.Player1_Buttons.Length == 9 && Game_Server.Player1_Buttons[0] == '1') || Input.GetKey(KeyCode.UpArrow) && !m_is_stopped)
                     m_Acceleration = 1f;
-                else if (Game_Server.Player1_Buttons.Length == 9 && Game_Server.Player1_Buttons[2] == '1' && !m_is_stopped)
+                else if (Game_Server.Player1_Buttons.Length == 9 && Game_Server.Player1_Buttons[2] == '1' || Input.GetKey(KeyCode.DownArrow) && !m_is_stopped)
                     m_Acceleration = -1f;
                 else
                     m_Acceleration = 0f;
 
-                if ((Game_Server.Player1_Buttons.Length == 9 && Game_Server.Player1_Buttons[4] == '1') && !(Game_Server.Player1_Buttons.Length == 9 && Game_Server.Player1_Buttons[6] == '1'))
+                if ((Game_Server.Player1_Buttons.Length == 9 && Game_Server.Player1_Buttons[4] == '1') || Input.GetKey(KeyCode.LeftArrow) && !(Game_Server.Player1_Buttons.Length == 9 && Game_Server.Player1_Buttons[6] == '1'))
                     m_Steering = -1f;
-                else if (!(Game_Server.Player1_Buttons.Length == 9 && Game_Server.Player1_Buttons[4] == '1') && (Game_Server.Player1_Buttons.Length == 9 && Game_Server.Player1_Buttons[6] == '1'))
+                else if (!(Game_Server.Player1_Buttons.Length == 9 && Game_Server.Player1_Buttons[4] == '1')  && (Game_Server.Player1_Buttons.Length == 9 && Game_Server.Player1_Buttons[6] == '1') || Input.GetKey(KeyCode.DownArrow))
                     m_Steering = 1f;
                 else
                     m_Steering = 0f;
 
                 m_HopHeld = Game_Server.Player1_Buttons.Length == 9 && Game_Server.Player1_Buttons[8] == '1';
+
+                if(PowerUpObtained == "Player 1")
+                {
+                    PowerUpObtained = "active";
+                    m_HasPowerUp = true;
+                }
             }
 
             if (gameObject.name == "Player 2")
             {
+
                 if ((Game_Server.Player2_Buttons.Length == 9 && Game_Server.Player2_Buttons[0] == '1') || Input.GetKey(KeyCode.W) && !m_is_stopped)
                     m_Acceleration = 1f;
                 else if (Game_Server.Player2_Buttons.Length == 9 && Game_Server.Player2_Buttons[2] == '1' && !m_is_stopped)
@@ -180,6 +213,12 @@ namespace KartGame.KartSystems
                     m_Steering = 0f;
 
                 m_HopHeld = Game_Server.Player2_Buttons.Length == 9 && Game_Server.Player2_Buttons[8] == '1';
+
+                if (PowerUpObtained == "Player 2")
+                {
+                    PowerUpObtained = "active";
+                    m_HasPowerUp = true;
+                }
             }
 
             if (gameObject.name == "Player 3")
@@ -199,6 +238,12 @@ namespace KartGame.KartSystems
                     m_Steering = 0f;
 
                 m_HopHeld = Game_Server.Player3_Buttons.Length == 9 && Game_Server.Player3_Buttons[8] == '1';
+
+                if (PowerUpObtained == "Player 3")
+                {
+                    PowerUpObtained = "active";
+                    m_HasPowerUp = true;
+                }
             }
 
             if (gameObject.name == "Player 4")
@@ -218,6 +263,12 @@ namespace KartGame.KartSystems
                     m_Steering = 0f;
 
                 m_HopHeld = Game_Server.Player4_Buttons.Length == 9 && Game_Server.Player4_Buttons[8] == '1';
+
+                if (PowerUpObtained == "Player 4")
+                {
+                    PowerUpObtained = "active";
+                    m_HasPowerUp = true;
+                }
             }
 
             // Perform shrink

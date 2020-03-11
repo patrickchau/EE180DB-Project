@@ -57,6 +57,7 @@ int down_pushed  = 0;
 int right_pushed = 0;
 int left_pushed  = 0;
 int jump_pushed  = 0;
+int item_pushed  = 0;
 
 void* run_display(void* arg) {
 
@@ -70,16 +71,15 @@ void* run_display(void* arg) {
         if(server_connected == 1) {
 
             // Indicate controller is connected
-            digitalWrite(CLED, HIGH);
+            digitalWrite(CLED, LOW);
 
             // Determine if buttons have been pushed
             pthread_mutex_lock(&lock);
 
             up_pushed    = !digitalRead(UP);
             down_pushed  = !digitalRead(DOWN);
-            //right_pushed = !digitalRead(RIGHT);
-            //left_pushed  = !digitalRead(LEFT);
-            jump_pushed  = !digitalRead(JUMP);
+            item_pushed = !digitalRead(RIGHT);
+            jump_pushed  = !digitalRead(LEFT);
 
             // Grab a new input every frame
             pthread_mutex_unlock(&lock);
@@ -111,6 +111,7 @@ void clear_pins() {
     digitalWrite(S1, LOW);
     digitalWrite(S2, LOW);
     digitalWrite(S3, LOW);
+    digitalWrite(CLED, LOW);
 }
 
 void init_pins() {

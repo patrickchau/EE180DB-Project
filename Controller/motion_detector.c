@@ -115,11 +115,11 @@ void* detect_motion(void* arg)
 		AccYangle = (float) (atan2(accRaw[2],accRaw[0])+M_PI)*RAD_TO_DEG;
 
 		//If IMU is up the correct way, use these lines
-		if (AccXangle >180)
-				AccXangle -= (float)360.0;
-		AccYangle-=90;
-		if (AccYangle >180)
-				AccYangle -= (float)360.0;
+		AccXangle -= (float)180.0;
+		if (AccYangle > 90)
+				AccYangle -= (float)270;
+		else
+			AccYangle += (float)90;
 
 		//Complementary filter used to combine the accelerometer and gyro values.
 		CFangleX=AA*(CFangleX+rate_gyr_x*DT) +(1 - AA) * AccXangle;
@@ -142,7 +142,7 @@ void* detect_motion(void* arg)
 
 		pthread_mutex_unlock(&lock);
 
-		//printf ("   CFangleX  %7.3f \t CFangleY %7.3f\n",CFangleX,CFangleX);
+		//printf ("   CFangleX  %7.3f \t CFangleY %7.3f\n",CFangleX,CFangleY);
 
 		//Each loop should be at least 20ms.
 		while(mymillis() - startInt < (DT*1000)){
