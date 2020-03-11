@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using KartGame.KartSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 namespace KartGame.Track
@@ -24,6 +25,9 @@ namespace KartGame.Track
         // goes from start/finish -> check1 -> check2 -> check3 and then loops 
         [Tooltip("Reference to an object responsible for repositioning karts.")]
         public KartRepositioner kartRepositioner;
+
+        public string Endscene;
+        private int numfin = 0;
 
         bool m_IsRaceRunning;
         Dictionary<IRacer, Checkpoint> m_RacerNextCheckpoints = new Dictionary<IRacer, Checkpoint>(16);
@@ -320,6 +324,13 @@ namespace KartGame.Track
 
                         racer.DisableControl();
                         racer.PauseTimer();
+                        numfin++;
+
+                        if (numfin == 4)
+                        {
+                            Debug.Log("Setting to Endscene");
+                            SceneManager.LoadScene("Endscene");
+                        }
                     }
                 }
 
