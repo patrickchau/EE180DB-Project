@@ -12,41 +12,44 @@ namespace KartGame.Track
         /// <summary>
         /// Stop the race timer from counting up.
         /// </summary>
-        void PauseTimer ();
+        void PauseTimer();
 
         /// <summary>
         /// Resume the race timer counting up.
         /// </summary>
-        void UnpauseTimer ();
+        void UnpauseTimer();
 
         /// <summary>
         /// Called by the TrackManager when the racer has hit the start/finish line.
         /// </summary>
-        void HitStartFinishLine ();
+        void HitStartFinishLine();
 
         /// <summary>
         /// Gets the current lap the racer is on, starting at 1 once the racer crosses the start line.
         /// </summary>
-        int GetCurrentLap ();
+        int GetCurrentLap();
 
         /// <summary>
         /// Gets all the lap times for this racer for their current race.
         /// </summary>
-        List<float> GetLapTimes ();
+        List<float> GetLapTimes();
 
         /// <summary>
         /// Gets the current lap time.
         /// </summary>
-        float GetLapTime ();
+        float GetLapTime();
 
         /// <summary>
         /// Gets the total time spent in the race so far.
         /// </summary>
-        float GetRaceTime ();
+        float GetRaceTime();
 
         /// <summary>
         /// Gets the name of the racer for scoreboards and records.
         /// </summary>
-        string GetName ();
+        string GetName();
+
+
+        float[] GetPosition();
     }
 }

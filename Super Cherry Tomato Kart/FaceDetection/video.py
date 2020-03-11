@@ -178,12 +178,15 @@ def create_capture(source = 0, fallback = presets['chess']):
     cap = None
     if source == 'synth':
         Class = classes.get(params.get('class', None), VideoSynthBase)
-        try: cap = Class(**params)
+        try: 
+            cap = Class(**params)
+            print("Hello world")
         except: pass
     else:
         cap = cv.VideoCapture(source)
         if 'size' in params:
             w, h = map(int, params['size'].split('x'))
+            print("Width: " + str(w)  + "    height:" + str(h))
             cap.set(cv.CAP_PROP_FRAME_WIDTH, w)
             cap.set(cv.CAP_PROP_FRAME_HEIGHT, h)
     if cap is None or not cap.isOpened():

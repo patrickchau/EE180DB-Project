@@ -9,64 +9,72 @@ namespace KartGame.Track
     /// </summary>
     public class Racer : MonoBehaviour, IRacer
     {
-        [Tooltip ("A reference to the IControllable for the kart.  Normally this is the KartMovement script.")]
-        [RequireInterface (typeof(IControllable))]
+        [Tooltip("A reference to the IControllable for the kart.  Normally this is the KartMovement script.")]
+        [RequireInterface(typeof(IControllable))]
         public Object kartMovement;
 
         IControllable m_KartMovement;
         bool m_IsTimerPaused = true;
         float m_Timer = 0f;
         int m_CurrentLap = 0;
-        List<float> m_LapTimes = new List<float> (9);
+        List<float> m_LapTimes = new List<float>(9);
 
-        void Awake ()
+        void Awake()
         {
             m_KartMovement = kartMovement as IControllable;
         }
 
-        void Update ()
+        void Update()
         {
             if (m_CurrentLap > 0 && !m_IsTimerPaused)
                 m_Timer += Time.deltaTime;
         }
 
-        public void PauseTimer ()
+        public void PauseTimer()
         {
             m_IsTimerPaused = true;
         }
 
-        public void UnpauseTimer ()
+        public void UnpauseTimer()
         {
             m_IsTimerPaused = false;
         }
 
-        public void HitStartFinishLine ()
+        public void HitStartFinishLine()
         {
             if (m_CurrentLap > 0)
             {
-                m_LapTimes.Add (m_Timer);
+                m_LapTimes.Add(m_Timer);
                 m_Timer = 0f;
             }
 
             m_CurrentLap++;
         }
 
-        public int GetCurrentLap ()
+        public int GetCurrentLap()
         {
             return m_CurrentLap;
         }
 
-        public List<float> GetLapTimes ()
+        public List<float> GetLapTimes()
         {
             return m_LapTimes;
         }
 
-        public float GetLapTime ()
+        public float GetLapTime()
         {
             return m_Timer;
         }
 
-        public float GetRaceTime ()
+        public float[] GetPosition()
+        {
+            float x = transform.position.x;
+            float z = transform.position.z;
+            float[] x_z = { x, z };
+            return x_z;
+        }
+
+        public float GetRaceTime()
         {
             float raceTime = m_Timer;
             for (int i = 0; i < m_LapTimes.Count; i++)
@@ -77,22 +85,22 @@ namespace KartGame.Track
             return raceTime;
         }
 
-        public void EnableControl ()
+        public void EnableControl()
         {
-            m_KartMovement.EnableControl ();
+            m_KartMovement.EnableControl();
         }
 
-        public void DisableControl ()
+        public void DisableControl()
         {
-            m_KartMovement.DisableControl ();
+            m_KartMovement.DisableControl();
         }
 
-        public bool IsControlled ()
+        public bool IsControlled()
         {
-            return m_KartMovement.IsControlled ();
+            return m_KartMovement.IsControlled();
         }
 
-        public string GetName ()
+        public string GetName()
         {
             return name;
         }
