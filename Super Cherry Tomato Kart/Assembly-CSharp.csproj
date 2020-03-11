@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\DisplayWebCam.cs" />
     <Compile Include="Assets\Game_Server.cs" />
+    <Compile Include="Assets\ItemBox.cs" />
     <Compile Include="Assets\Karting\Scripts\KartSystems\Inputs\ControllerInput2.cs" />
     <Compile Include="Assets\Karting\Scripts\KartSystems\Inputs\GamepadInput.cs" />
     <Compile Include="Assets\Karting\Scripts\KartSystems\Inputs\IInput.cs" />

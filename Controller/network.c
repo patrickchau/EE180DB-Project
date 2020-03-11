@@ -219,8 +219,8 @@ void* server_communication(void* arg)
             bzero(msg, sizeof(msg));
 
             pthread_mutex_lock(&lock);
-            sprintf(msg, "pushed,%d.%d.%d.%d.%d", up_pushed, down_pushed,
-            left_pushed, right_pushed, jump_pushed);
+            sprintf(msg, "pushed,%d.%d.%d.%d.%d.%d", up_pushed, down_pushed,
+            left_pushed, right_pushed, jump_pushed, item_pushed);
             pthread_mutex_unlock(&lock);
 
             // Deliver pushed buttons

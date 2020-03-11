@@ -66,6 +66,7 @@ extern int up_pushed;
 extern int down_pushed;
 extern int right_pushed;
 extern int left_pushed;
+extern int item_pushed;
 extern int jump_pushed;
 
 // Server

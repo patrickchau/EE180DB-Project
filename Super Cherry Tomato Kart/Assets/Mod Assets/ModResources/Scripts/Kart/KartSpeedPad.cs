@@ -14,8 +14,11 @@ public class KartSpeedPad : MonoBehaviour
     void OnTriggerEnter(Collider other){
         var rb = other.attachedRigidbody;
         if (rb == null) return;
-        var kart = rb.GetComponent<KartMovement>();
-        kart.StartCoroutine(KartModifier(kart, duration));
+
+        if (KeyboardInput.PowerUpObtained == "noone") {
+            KeyboardInput.PowerUpObtained = rb.name;
+            Debug.Log(gameObject.GetComponent<Renderer>().name);
+        }
     }
 
     IEnumerator KartModifier(KartGame.KartSystems.KartMovement kart, float lifetime){
