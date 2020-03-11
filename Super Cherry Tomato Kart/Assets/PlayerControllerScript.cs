@@ -95,7 +95,7 @@ public class PlayerControllerScript : MonoBehaviour
             catch (Exception e)
             {
                 // print out error type
-                //print(e.ToString()); //7
+                print(e.ToString()); //7
             }
 
             if (!(string.IsNullOrEmpty(text)))
