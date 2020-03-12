@@ -70,6 +70,8 @@ public class UVoiceRec : MonoBehaviour
 
     }
 
+    void Awake() { DontDestroyOnLoad(transform.gameObject); }
+
     private void FixedUpdate()
     {
         timer++;

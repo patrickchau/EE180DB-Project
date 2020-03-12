@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace KartGame.KartSystems
 {
@@ -52,6 +54,7 @@ namespace KartGame.KartSystems
         bool m_protected_from_shrink = false;
         bool m_is_stopped = false;
         bool m_pushed_power_up = false;
+        bool m_is_invincible = false;
 
         bool m_FixedUpdateHappened;
         static bool m_shrink_activated = false;
@@ -89,10 +92,18 @@ namespace KartGame.KartSystems
 
         IEnumerator StopModifier(KartGame.KartSystems.KartMovement kart, float lifetime)
         {
-            kart.AddKartModifier(stopStats);
-            yield return new WaitForSeconds(lifetime);
-            kart.RemoveKartModifier(stopStats);
-            m_is_stopped = false;
+            if (!m_is_invincible)
+            {
+                kart.AddKartModifier(stopStats);
+                yield return new WaitForSeconds(lifetime);
+                kart.RemoveKartModifier(stopStats);
+                m_is_stopped = false;
+            } else
+            {
+                Debug.Log(gameObject.name + ": invincibility protected from shrink and has now worn off");
+                m_is_invincible = false;
+            }
+
             PowerUpObtained = "used";
         }
 
@@ -133,6 +144,7 @@ namespace KartGame.KartSystems
                 {
                     UVoiceRec.invincible_registered = false;
                     var kart = gameObject.GetComponent<KartMovement>();
+                    m_is_invincible = true;
                     m_HasPowerUp = false;
                     
                 }
@@ -159,7 +171,14 @@ namespace KartGame.KartSystems
 
         void Update ()
         {
-            
+            if (Input.GetKey(KeyCode.R))
+            {
+                SceneManager.LoadScene("contrast");
+            }
+
+            if (SceneManager.GetActiveScene().name == "contrast")
+                return;
+           
             if (m_HasPowerUp && !PowerUp.isPlaying)
             {
                 PowerUp.Play();
@@ -284,9 +303,16 @@ namespace KartGame.KartSystems
             if (m_shrink_activated && !m_protected_from_shrink)
             {
                 m_protected_from_shrink = true;
-                Debug.Log("shrink activated!");
-                var kart = gameObject.GetComponent<KartMovement>();
-                kart.StartCoroutine(ShrinkModifier(kart, gameObject, 4.5f));
+                if (!m_is_invincible)
+                {
+                    Debug.Log("shrink activated!");
+                    var kart = gameObject.GetComponent<KartMovement>();
+                    kart.StartCoroutine(ShrinkModifier(kart, gameObject, 4.5f));
+                } else
+                {
+                    Debug.Log(gameObject.name + ": invincibility protected from shrink and has now worn off");
+                    m_is_invincible = false;
+                }
             }
 
             if (m_FixedUpdateHappened)

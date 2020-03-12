@@ -61,8 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\DisplayWebCam.cs" />
+    <Compile Include="Assets\ExitOnClick.cs" />
+    <Compile Include="Assets\ExitProgram.cs" />
     <Compile Include="Assets\Game_Server.cs" />
     <Compile Include="Assets\ItemBox.cs" />
+    <Compile Include="Assets\Joey.cs" />
     <Compile Include="Assets\Karting\Scripts\KartSystems\Inputs\ControllerInput2.cs" />
     <Compile Include="Assets\Karting\Scripts\KartSystems\Inputs\GamepadInput.cs" />
     <Compile Include="Assets\Karting\Scripts\KartSystems\Inputs\IInput.cs" />
@@ -101,6 +104,7 @@
     <Compile Include="Assets\Karting\Scripts\Utilities\ListExtensions.cs" />
     <Compile Include="Assets\Karting\Scripts\Utilities\QuaternionExtensions.cs" />
     <Compile Include="Assets\Karting\Scripts\Utilities\RequireInterfaceAttribute.cs" />
+    <Compile Include="Assets\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Mod Assets\ModResources\Scripts\Backend\TemplateEditorDetection.cs" />
     <Compile Include="Assets\Mod Assets\ModResources\Scripts\BallGame\EmitParticlesOnBallBounce.cs" />
     <Compile Include="Assets\Mod Assets\ModResources\Scripts\Kart\EmitParticlesOnKartBounce.cs" />
@@ -109,6 +113,7 @@
     <Compile Include="Assets\Mod Assets\ModResources\Scripts\Kart\SimpleTrigger.cs" />
     <Compile Include="Assets\Mod Assets\ModResources\Scripts\Platformer\EmitParticlesOnLand.cs" />
     <Compile Include="Assets\PlayerControllerScript.cs" />
+    <Compile Include="Assets\PlayIt.cs" />
     <Compile Include="Assets\UVoiceRec.cs" />
     <None Include="Assets\Karting\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Karting\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

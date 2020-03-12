@@ -49,9 +49,9 @@
 // Controller Pin names
 #define CLED 0
 #define UP 2
-#define DOWN 1//25
+#define DOWN 1
 #define LEFT 3
-#define RIGHT 22 //4
+#define RIGHT 4
 #define JUMP 7
 
 

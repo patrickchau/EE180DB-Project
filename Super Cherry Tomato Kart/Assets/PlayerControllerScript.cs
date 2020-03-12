@@ -46,6 +46,7 @@ public class PlayerControllerScript : MonoBehaviour
         InitUDP(); //4
         client = new UdpClient(port); //1
         go = GameObject.Find("Cube");
+        DontDestroyOnLoad(go);
         web = go.GetComponent<DisplayWebCam>();
         fp = GameObject.Find("TrackManager");
         tp = fp.GetComponent<KartGame.Track.TrackManager>();
