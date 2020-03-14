@@ -10,7 +10,8 @@ using System.Threading;
 public class DisplayWebCam : MonoBehaviour
 {
     // goes to super cherry tomato kartz
-    string addon = "savedImage.jpg";
+    // string addon = "//savedImage.jpg";
+    string addon = Path.GetFullPath("FaceDetection\\savedImage.jpg");
     string filepath;
     public bool new_image = false;
 

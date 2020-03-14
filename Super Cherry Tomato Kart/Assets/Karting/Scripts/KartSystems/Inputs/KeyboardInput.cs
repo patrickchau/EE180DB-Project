@@ -188,116 +188,148 @@ namespace KartGame.KartSystems
                 PowerUp.Stop();
             }
 
-            if (gameObject.name == "Player 1") {
-                
-                if ((Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[0] == '1') || Input.GetKey(KeyCode.UpArrow) && !m_is_stopped)
-                    m_Acceleration = 1f;
-                else if (Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[2] == '1' || Input.GetKey(KeyCode.DownArrow) && !m_is_stopped)
-                    m_Acceleration = -1f;
-                else
-                    m_Acceleration = 0f;
+            if (Input.GetKey(KeyCode.UpArrow))
+                m_Acceleration = 1f;
+            else if (Input.GetKey(KeyCode.DownArrow))
+                m_Acceleration = -1f;
+            else
+                m_Acceleration = 0f;
 
-                if ((Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[4] == '1') || Input.GetKey(KeyCode.LeftArrow) && !(Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[6] == '1'))
-                    m_Steering = -1f;
-                else if (!(Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[4] == '1')  && (Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[6] == '1') || Input.GetKey(KeyCode.DownArrow))
-                    m_Steering = 1f;
-                else
-                    m_Steering = 0f;
+            if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
+                m_Steering = -1f;
+            else if (!Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
+                m_Steering = 1f;
+            else
+                m_Steering = 0f;
 
-                m_HopHeld = Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[8] == '1';
+            m_HopHeld = Input.GetKey(KeyCode.Space);
 
-                m_pushed_power_up = Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[10] == '1';
-
-                if (PowerUpObtained == "Player 1")
-                {
-                    PowerUpObtained = "active";
-                    m_HasPowerUp = true;
-                }
-            }
-
-            if (gameObject.name == "Player 2")
+            if (m_FixedUpdateHappened)
             {
+                m_FixedUpdateHappened = false;
 
-                if ((Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[0] == '1') || Input.GetKey(KeyCode.W) && !m_is_stopped)
-                    m_Acceleration = 1f;
-                else if (Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[2] == '1' && !m_is_stopped)
-                    m_Acceleration = -1f;
-                else
-                    m_Acceleration = 0f;
-
-                if ((Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[4] == '1') && !(Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[6] == '1'))
-                    m_Steering = -1f;
-                else if (!(Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[4] == '1') && (Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[6] == '1'))
-                    m_Steering = 1f;
-                else
-                    m_Steering = 0f;
-
-                m_HopHeld = Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[8] == '1';
-
-                m_pushed_power_up = Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[10] == '1';
-
-                if (PowerUpObtained == "Player 2")
-                {
-                    PowerUpObtained = "active";
-                    m_HasPowerUp = true;
-                }
+                m_HopPressed = false;
+                m_BoostPressed = false;
+                m_FirePressed = false;
             }
 
-            if (gameObject.name == "Player 3")
+            m_HopPressed |= Input.GetKeyDown(KeyCode.Space);
+            m_BoostPressed |= Input.GetKeyDown(KeyCode.RightShift);
+            m_FirePressed |= Input.GetKeyDown(KeyCode.RightControl);
+        
+
+
+        /*
+        if (gameObject.name == "Player 1") {
+
+            if ((Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[0] == '1') || Input.GetKey(KeyCode.UpArrow) && !m_is_stopped)
+                m_Acceleration = 1f;
+            else if (Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[2] == '1' || Input.GetKey(KeyCode.DownArrow) && !m_is_stopped)
+                m_Acceleration = -1f;
+            else
+                m_Acceleration = 0f;
+
+            if ((Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[4] == '1') || Input.GetKey(KeyCode.LeftArrow) && !(Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[6] == '1'))
+                m_Steering = -1f;
+            else if (!(Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[4] == '1')  && (Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[6] == '1') || Input.GetKey(KeyCode.DownArrow))
+                m_Steering = 1f;
+            else
+                m_Steering = 0f;
+
+            m_HopHeld = Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[8] == '1';
+
+            m_pushed_power_up = Game_Server.Player1_Buttons.Length == 11 && Game_Server.Player1_Buttons[10] == '1';
+
+            if (PowerUpObtained == "Player 1")
             {
-                if (Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[0] == '1' && !m_is_stopped)
-                    m_Acceleration = 1f;
-                else if (Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[2] == '1' && !m_is_stopped)
-                    m_Acceleration = -1f;
-                else
-                    m_Acceleration = 0f;
-
-                if ((Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[4] == '1') && !(Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[6] == '1'))
-                    m_Steering = -1f;
-                else if (!(Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[4] == '1') && (Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[6] == '1'))
-                    m_Steering = 1f;
-                else
-                    m_Steering = 0f;
-
-                m_HopHeld = Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[8] == '1';
-
-                m_pushed_power_up = Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[10] == '1';
-
-                if (PowerUpObtained == "Player 3")
-                {
-                    PowerUpObtained = "active";
-                    m_HasPowerUp = true;
-                }
+                PowerUpObtained = "active";
+                m_HasPowerUp = true;
             }
+        }
 
-            if (gameObject.name == "Player 4")
+        if (gameObject.name == "Player 2")
+        {
+
+            if ((Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[0] == '1') || Input.GetKey(KeyCode.W) && !m_is_stopped)
+                m_Acceleration = 1f;
+            else if (Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[2] == '1' && !m_is_stopped)
+                m_Acceleration = -1f;
+            else
+                m_Acceleration = 0f;
+
+            if ((Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[4] == '1') && !(Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[6] == '1'))
+                m_Steering = -1f;
+            else if (!(Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[4] == '1') && (Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[6] == '1'))
+                m_Steering = 1f;
+            else
+                m_Steering = 0f;
+
+            m_HopHeld = Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[8] == '1';
+
+            m_pushed_power_up = Game_Server.Player2_Buttons.Length == 11 && Game_Server.Player2_Buttons[10] == '1';
+
+            if (PowerUpObtained == "Player 2")
             {
-                if (Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[0] == '1' && !m_is_stopped)
-                    m_Acceleration = 1f;
-                else if (Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[2] == '1' && !m_is_stopped)
-                    m_Acceleration = -1f;
-                else
-                    m_Acceleration = 0f;
-
-                if ((Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[4] == '1') && !(Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[6] == '1'))
-                    m_Steering = -1f;
-                else if (!(Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[4] == '1') && (Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[6] == '1'))
-                    m_Steering = 1f;
-                else
-                    m_Steering = 0f;
-
-                m_HopHeld = Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[8] == '1';
-
-                m_pushed_power_up = Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[10] == '1';
-
-                if (PowerUpObtained == "Player 4")
-                {
-                    PowerUpObtained = "active";
-                    m_HasPowerUp = true;
-                }
+                PowerUpObtained = "active";
+                m_HasPowerUp = true;
             }
+        }
 
-            HandlePowerUp();
+        if (gameObject.name == "Player 3")
+        {
+            if (Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[0] == '1' && !m_is_stopped)
+                m_Acceleration = 1f;
+            else if (Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[2] == '1' && !m_is_stopped)
+                m_Acceleration = -1f;
+            else
+                m_Acceleration = 0f;
+
+            if ((Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[4] == '1') && !(Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[6] == '1'))
+                m_Steering = -1f;
+            else if (!(Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[4] == '1') && (Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[6] == '1'))
+                m_Steering = 1f;
+            else
+                m_Steering = 0f;
+
+            m_HopHeld = Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[8] == '1';
+
+            m_pushed_power_up = Game_Server.Player3_Buttons.Length == 11 && Game_Server.Player3_Buttons[10] == '1';
+
+            if (PowerUpObtained == "Player 3")
+            {
+                PowerUpObtained = "active";
+                m_HasPowerUp = true;
+            }
+        }
+
+        if (gameObject.name == "Player 4")
+        {
+            if (Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[0] == '1' && !m_is_stopped)
+                m_Acceleration = 1f;
+            else if (Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[2] == '1' && !m_is_stopped)
+                m_Acceleration = -1f;
+            else
+                m_Acceleration = 0f;
+
+            if ((Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[4] == '1') && !(Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[6] == '1'))
+                m_Steering = -1f;
+            else if (!(Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[4] == '1') && (Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[6] == '1'))
+                m_Steering = 1f;
+            else
+                m_Steering = 0f;
+
+            m_HopHeld = Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[8] == '1';
+
+            m_pushed_power_up = Game_Server.Player4_Buttons.Length == 11 && Game_Server.Player4_Buttons[10] == '1';
+
+            if (PowerUpObtained == "Player 4")
+            {
+                PowerUpObtained = "active";
+                m_HasPowerUp = true;
+            }
+        }
+        */
+        HandlePowerUp();
 
             // Perform shrink
             if (m_shrink_activated && !m_protected_from_shrink)

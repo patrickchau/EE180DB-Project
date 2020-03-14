@@ -209,7 +209,7 @@ namespace KartGame.Track
                 }
             }
             firstPlace = index + 1;
-            //print("Current player in first place: " + firstPlace);
+            print("Current player in first place: " + firstPlace);
         }
         /// <summary>
         /// Starts the timers and enables control of all racers.

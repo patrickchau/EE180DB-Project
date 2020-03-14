@@ -21,6 +21,7 @@ public class PlayerControllerScript : MonoBehaviour
     DisplayWebCam web;
     Process pro;
     KartGame.Track.TrackManager tp;
+    bool flag;
 
     // 2. Initialize variables
     void Start()
@@ -40,7 +41,7 @@ public class PlayerControllerScript : MonoBehaviour
         //psi.CreateNoWindow = true;
 
         pro = Process.Start(psi);
-
+        flag = false;
 
         port = 5065; //1 
         InitUDP(); //4
@@ -48,9 +49,6 @@ public class PlayerControllerScript : MonoBehaviour
         go = GameObject.Find("Cube");
         DontDestroyOnLoad(go);
         web = go.GetComponent<DisplayWebCam>();
-        fp = GameObject.Find("TrackManager");
-        tp = fp.GetComponent<KartGame.Track.TrackManager>();
-
     }
     private void OnApplicationQuit()
     {
@@ -84,10 +82,10 @@ public class PlayerControllerScript : MonoBehaviour
 
                 // try to send data, only send if there is an update in first place
                 string fi = tp.GetFirstPlace();
-                //print("fi: " + fi + "   text:" + received + "   Equality?: " + fi.Equals(received));
+                print("fi: " + fi + "   text:" + received + "   Equality?: " + fi.Equals(received));
                 if (!fi.Equals(received))
                 {
-                    //print("First place updated! First place player is now " + fi);
+                    print("First place updated! First place player is now " + fi);
                     received = fi;
                     byte[] sendData = Encoding.UTF8.GetBytes(received);
                     client.Send(sendData, sendData.Length, anyIP);
@@ -104,6 +102,7 @@ public class PlayerControllerScript : MonoBehaviour
                 // if the string has some content
                 if (text == "updated")
                 {
+                    print("pulling new image!");
                     // then we want to pull the new texture
                     web.update_image(true);
                 }
@@ -114,7 +113,13 @@ public class PlayerControllerScript : MonoBehaviour
     // 6. Check for variable value, and make the Player Jump!
     void Update()
     {
-
+        fp = GameObject.Find("TrackManager2");
+        if (fp != null && !flag)
+        {
+            print("Found the correct track manager");
+            tp = fp.GetComponent<KartGame.Track.TrackManager>();
+            flag = true;
+        }
     }
 
 }

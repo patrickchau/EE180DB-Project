@@ -221,8 +221,8 @@ def main():
     # 'convenience function for capture creation'
     cam = create_capture(video_src, fallback='synth:bg={}:noise=0.05:size=1280x1024'.format(cv.samples.findFile(abs_path+'/lena.jpg')))
     
-    #img = cv.imread(abs_path+"/5.jpg")
-    _ret, img = cam.read()
+    img = cv.imread(abs_path+"/index2.jpg")
+    #_ret, img = cam.read()
 
     # take an initial reading of the rects
     # from left to right from the view of the camera, we will have players 1 to 4 w/ 0,0 as the upper left
@@ -237,11 +237,12 @@ def main():
     while True:
         # first retrieve message from game to see which face to display
         place = readServer(sock)
+        #place = None
         if place != None and place != "nothing":
             _FIRST_PLACE = int(place)
             print("First place is now " + str(_FIRST_PLACE))
         # read from the camera and turn into grayscale
-        _ret, img = cam.read()
+        #_ret, img = cam.read()
         
         # find the bounding boxes for faces
         new_rects = find_rects(img, cascade)
@@ -260,8 +261,10 @@ def main():
 
         if (len(rects) > 0):    # if rects is not empty, update on unity end
             if len(rects) < _FIRST_PLACE:
+                print("saving default")
                 update = rects[0]
             else:
+                print("saving actual, place:" + str(_FIRST_PLACE-1))
                 update = rects[_FIRST_PLACE - 1]
 
             (x_marg, y_marg) = (0,0)
@@ -283,7 +286,10 @@ def main():
             # save the cropped image for unity to pull
             crop_img = img[y1:y1+y_marg, x1:x1+x_marg].copy()
             if (crop_img.size != 0): # only write if the image actually exists
-                cv.imwrite('savedImage.jpg', crop_img)  # saves face image for unity
+                print("now saving image: " + str(_FIRST_PLACE))
+                #cv.imwrite('savedImage2.png', crop_img)  # saves face image for unity
+                boolp = cv.imwrite(abs_path+'\\savedImage.jpg', crop_img)  # saves face image for unity
+                print("Did the image save?: " + str(boolp))
                 sock.sendto( 'updated'.encode(), (UDP_IP, UDP_PORT) )   # sends the coords for face
 
         if cv.waitKey(5) == 27:

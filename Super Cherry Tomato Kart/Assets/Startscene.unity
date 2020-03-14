@@ -13011,7 +13011,7 @@ PrefabInstance:
     - target: {fileID: 9084884021648134802, guid: 1a27545505a30d6479abf78847244a72,
         type: 3}
       propertyPath: m_Name
-      value: TrackManager
+      value: TrackManager2
       objectReference: {fileID: 0}
     - target: {fileID: 9084884021648134806, guid: 1a27545505a30d6479abf78847244a72,
         type: 3}
@@ -14722,7 +14722,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175779212}
-  m_LocalRotation: {x: 0.038215768, y: 8.72739e-10, z: -0.0000004855645, w: 0.99926955}
+  m_LocalRotation: {x: 0.038215768, y: 0.00000003631869, z: -0.0000004869201, w: 0.99926955}
   m_LocalPosition: {x: 13.29, y: 2.05, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
