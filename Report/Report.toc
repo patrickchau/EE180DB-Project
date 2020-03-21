@@ -1,0 +1,36 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}% 
+\contentsline {section}{\numberline {2}Basic Design}{2}{section.2}% 
+\contentsline {section}{\numberline {3}UI and Preliminary Server Work (Xilai)}{3}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Navigation}{4}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Audio}{6}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Primitive Server}{7}{subsection.3.3}% 
+\contentsline {section}{\numberline {4}Controllers, Server, and Unity (Joey)}{7}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}Hardware}{7}{subsection.4.1}% 
+\contentsline {subsubsection}{\numberline {4.1.1}Parts List}{7}{subsubsection.4.1.1}% 
+\contentsline {subsubsection}{\numberline {4.1.2}Circuit Schematic}{8}{subsubsection.4.1.2}% 
+\contentsline {subsection}{\numberline {4.2}Converting Hardware Token to Controller}{8}{subsection.4.2}% 
+\contentsline {subsubsection}{\numberline {4.2.1}Hardware Token File Change Log}{9}{subsubsection.4.2.1}% 
+\contentsline {subsubsection}{\numberline {4.2.2}Motion Detector.c and .h}{9}{subsubsection.4.2.2}% 
+\contentsline {subsection}{\numberline {4.3}Server client Architecture}{10}{subsection.4.3}% 
+\contentsline {subsection}{\numberline {4.4}Unity Design}{10}{subsection.4.4}% 
+\contentsline {subsubsection}{\numberline {4.4.1}Power Ups}{11}{subsubsection.4.4.1}% 
+\contentsline {subsubsection}{\numberline {4.4.2}Scene Design}{12}{subsubsection.4.4.2}% 
+\contentsline {section}{\numberline {5}Speech Detection (Jorge)}{12}{section.5}% 
+\contentsline {section}{\numberline {6}Facial Detection (Patrick)}{13}{section.6}% 
+\contentsline {section}{\numberline {7}Encountered Issues and Workarounds}{15}{section.7}% 
+\contentsline {subsection}{\numberline {7.1}Hardware Failures}{15}{subsection.7.1}% 
+\contentsline {subsection}{\numberline {7.2}Facial Detection}{15}{subsection.7.2}% 
+\contentsline {subsection}{\numberline {7.3}Speech Detection}{15}{subsection.7.3}% 
+\contentsline {subsection}{\numberline {7.4}End Scene}{16}{subsection.7.4}% 
+\contentsline {section}{\numberline {8}Future Plans}{16}{section.8}% 
+\contentsline {subsection}{\numberline {8.1}3D Printed Case}{16}{subsection.8.1}% 
+\contentsline {subsection}{\numberline {8.2}PCB}{16}{subsection.8.2}% 
+\contentsline {subsection}{\numberline {8.3}More Levels}{17}{subsection.8.3}% 
+\contentsline {subsection}{\numberline {8.4}Option for Number of Players}{17}{subsection.8.4}% 
+\contentsline {subsection}{\numberline {8.5}Additional PowerUps}{17}{subsection.8.5}% 
+\contentsline {section}{\numberline {9}Experimental Verification}{17}{section.9}% 
+\contentsline {subsection}{\numberline {9.1}Speech}{18}{subsection.9.1}% 
+\contentsline {subsection}{\numberline {9.2}Facial Detection}{18}{subsection.9.2}% 
+\contentsline {section}{\numberline {10}Conclusion}{19}{section.10}% 
+\contentsline {section}{\numberline {11}References}{19}{section.11}% 

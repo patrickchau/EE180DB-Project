@@ -1,0 +1,528 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7050 64-bit) (preloaded format=pdflatex 2019.7.13)  20 MAR 2020 18:51
+entering extended mode
+**./Report.tex
+(Report.tex
+LaTeX2e <2018-12-01>
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\size10.clo"
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphicx.sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphics.sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-def\pdftex.def"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\babel.sty"
+Package: babel 2019/06/03 3.32 The Babel package
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\switch.def"
+File: switch.def 2019/06/03 3.32 Babel switching mechanism
+)
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\firey\AppData\Roaming\MiKTeX\2.9\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/babel-english\english.ldf"
+Language: english 2017/06/06 v3.3r English support from the babel system
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\babel.def"
+File: babel.def 2019/06/03 3.32 Babel common definitions
+\babel@savecnt=\count88
+\U@D=\dimen105
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\txtbabel.def")
+\bbl@dirlevel=\count89
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\inputenc.sty"
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks15
+\inpenc@posthook=\toks16
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\latin1.def"
+File: latin1.def 2018/08/11 v1.3c Input encoding file
+))
+(C:\Users\firey\AppData\Roaming\MiKTeX\2.9\tex/latex/comment\comment.sty
+\CommentStream=\write3
+
+Excluding comment 'comment')
+(C:\Users\firey\AppData\Roaming\MiKTeX\2.9\tex/latex/subfigure\subfigure.sty
+Package: subfigure 2002/07/30 v2.1.4 subfigure package
+\subfigtopskip=\skip43
+\subfigcapskip=\skip44
+\subfigcaptopadj=\dimen106
+\subfigbottomskip=\skip45
+\subfigcapmargin=\dimen107
+\subfiglabelskip=\skip46
+\c@subfigure=\count90
+\c@lofdepth=\count91
+\c@subtable=\count92
+\c@lotdepth=\count93
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(C:\Users\firey\AppData\Roaming\MiKTeX\2.9\tex/latex/subfigure\subfigure.cfg)
+\subfig@top=\skip47
+\subfig@bottom=\skip48
+)
+(C:\Users\firey\AppData\Roaming\MiKTeX\2.9\tex/latex/placeins\placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count94
+\float@exts=\toks17
+\float@box=\box27
+\@float@everytoks=\toks18
+\@floatcapt=\box28
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/geometry\geometry.sty"
+Package: geometry 2018/04/16 v5.8 Page Geometry
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ifpdf.sty"
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ifvtex.sty"
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+("C:\Program Files\MiKTeX 2.9\tex/generic/ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count95
+\Gm@cntv=\count96
+\c@Gm@tempcnt=\count97
+\Gm@bindingoffset=\dimen108
+\Gm@wd@mp=\dimen109
+\Gm@odd@mp=\dimen110
+\Gm@even@mp=\dimen111
+\Gm@layoutwidth=\dimen112
+\Gm@layoutheight=\dimen113
+\Gm@layouthoffset=\dimen114
+\Gm@layoutvoffset=\dimen115
+\Gm@dimlist=\toks19
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/geometry\geometry.cfg"))
+(C:\Users\firey\AppData\Roaming\MiKTeX\2.9\tex/latex/setspace\setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\hyperref.sty"
+Package: hyperref 2018/11/30 v6.88e Hypertext links for LaTeX
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\hobsub-generic.sty"
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package hobsub Info: Skipping package `ifvtex' (already loaded).
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\auxhook.sty"
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\kvoptions.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen116
+\Hy@linkcounter=\count98
+\Hy@pagecounter=\count99
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\pd1enc.def"
+File: pd1enc.def 2018/11/30 v6.88e Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count100
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/00miktex\hyperref.cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4519.
+Package hyperref Info: Link nesting OFF on input line 4524.
+Package hyperref Info: Hyper index ON on input line 4527.
+Package hyperref Info: Plain pages OFF on input line 4534.
+Package hyperref Info: Backreferencing OFF on input line 4539.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4772.
+\c@Hy@tempcnt=\count101
+
+(C:\Users\firey\AppData\Roaming\MiKTeX\2.9\tex/latex/url\url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5125.
+\XeTeXLinkMargin=\dimen117
+\Fld@menulength=\count102
+\Field@Width=\dimen118
+\Fld@charsize=\dimen119
+Package hyperref Info: Hyper figures OFF on input line 6380.
+Package hyperref Info: Link nesting OFF on input line 6385.
+Package hyperref Info: Hyper index ON on input line 6388.
+Package hyperref Info: backreferencing OFF on input line 6395.
+Package hyperref Info: Link coloring OFF on input line 6400.
+Package hyperref Info: Link coloring with OCG OFF on input line 6405.
+Package hyperref Info: PDF/A mode OFF on input line 6410.
+LaTeX Info: Redefining \ref on input line 6450.
+LaTeX Info: Redefining \pageref on input line 6454.
+\Hy@abspage=\count103
+\c@Item=\count104
+\c@Hfootnote=\count105
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\hpdftex.def"
+File: hpdftex.def 2018/11/30 v6.88e Hyperref driver for pdfTeX
+\Fld@listcount=\count106
+\c@bookmark@seq@number=\count107
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\rerunfilecheck.sty"
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip49
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 21.
+
+(Report.aux)
+\openout1 = `Report.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+
+(C:\Users\firey\AppData\Roaming\MiKTeX\2.9\tex/context/base/mkii\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count108
+\scratchdimen=\dimen120
+\scratchbox=\box29
+\nofMPsegments=\count109
+\nofMParguments=\count110
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count111
+\MPscratchDim=\dimen121
+\MPnumerator=\count112
+\makeMPintoPDFobject=\count113
+\everyMPtoPDFconversion=\toks21
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\grfext.sty"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 452.9679pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 700.50687pt, 72.26999pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=452.9679pt
+* \textheight=700.50687pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=57.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\AtBeginShipoutBox=\box30
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\color.sty"
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+)
+Package hyperref Info: Link coloring ON on input line 25.
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\nameref.sty"
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\gettitlestring.sty"
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count114
+)
+LaTeX Info: Redefining \ref on input line 25.
+LaTeX Info: Redefining \pageref on input line 25.
+LaTeX Info: Redefining \nameref on input line 25.
+
+(Report.out) (Report.out)
+\@outlinefile=\write4
+\openout4 = `Report.out'.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 34.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 34.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 34.
+ (Report.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 5.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 5.
+)
+\tf@toc=\write5
+\openout5 = `Report.toc'.
+
+ [1
+
+{C:/Users/firey/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 46.
+
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 46.
+<Assets/System.png, id=189, 464.937pt x 197.538pt>
+File: Assets/System.png Graphic file (type png)
+<use Assets/System.png>
+Package pdftex.def Info: Assets/System.png  used on input line 62.
+(pdftex.def)             Requested size: 430.31812pt x 182.84035pt.
+<Assets/Unity.png, id=191, 275.8305pt x 127.677pt>
+File: Assets/Unity.png Graphic file (type png)
+<use Assets/Unity.png>
+Package pdftex.def Info: Assets/Unity.png  used on input line 71.
+(pdftex.def)             Requested size: 271.7835pt x 125.8103pt.
+ [2 <./Assets/System.png>]
+<Assets/MainMenu.png, id=199, 283.0575pt x 191.5155pt>
+File: Assets/MainMenu.png Graphic file (type png)
+<use Assets/MainMenu.png>
+Package pdftex.def Info: Assets/MainMenu.png  used on input line 79.
+(pdftex.def)             Requested size: 271.7835pt x 183.90245pt.
+<Assets/MainGame.png, id=200, 290.2845pt x 165.61874pt>
+File: Assets/MainGame.png Graphic file (type png)
+<use Assets/MainGame.png>
+Package pdftex.def Info: Assets/MainGame.png  used on input line 87.
+(pdftex.def)             Requested size: 271.7835pt x 155.06248pt.
+ [3 <./Assets/Unity.png> <./Assets/MainMenu.png>]
+<Assets/Info.png, id=209, 382.42876pt x 215.00325pt>
+File: Assets/Info.png Graphic file (type png)
+<use Assets/Info.png>
+Package pdftex.def Info: Assets/Info.png  used on input line 95.
+(pdftex.def)             Requested size: 271.7835pt x 152.80428pt.
+<Assets/InitialScenes.png, id=210, 169.8345pt x 96.36pt>
+File: Assets/InitialScenes.png Graphic file (type png)
+<use Assets/InitialScenes.png>
+Package pdftex.def Info: Assets/InitialScenes.png  used on input line 107.
+(pdftex.def)             Requested size: 271.7835pt x 154.22174pt.
+ [4 <./Assets/MainGame.png> <./Assets/Info.png>]
+<Assets/OnClick.png, id=219, 236.082pt x 96.36pt>
+File: Assets/OnClick.png Graphic file (type png)
+<use Assets/OnClick.png>
+Package pdftex.def Info: Assets/OnClick.png  used on input line 115.
+(pdftex.def)             Requested size: 271.7835pt x 110.93956pt.
+<Assets/Export.png, id=220, 290.88675pt x 236.68425pt>
+File: Assets/Export.png Graphic file (type png)
+<use Assets/Export.png>
+Package pdftex.def Info: Assets/Export.png  used on input line 123.
+(pdftex.def)             Requested size: 226.48395pt x 184.28793pt.
+ [5 <./Assets/InitialScenes.png> <./Assets/OnClick.png>]
+<Assets/Joey.png, id=229, 164.41425pt x 145.7445pt>
+File: Assets/Joey.png Graphic file (type png)
+<use Assets/Joey.png>
+Package pdftex.def Info: Assets/Joey.png  used on input line 136.
+(pdftex.def)             Requested size: 135.89174pt x 120.4653pt.
+
+[6 <./Assets/Export.png> <./Assets/Joey.png>]
+<Assets/circuit.png, id=238, 585.98924pt x 316.18124pt>
+File: Assets/circuit.png Graphic file (type png)
+<use Assets/circuit.png>
+Package pdftex.def Info: Assets/circuit.png  used on input line 170.
+(pdftex.def)             Requested size: 430.31812pt x 232.1902pt.
+ [7]
+<Assets/fcntl.png, id=245, 447.47176pt x 74.07675pt>
+File: Assets/fcntl.png Graphic file (type png)
+<use Assets/fcntl.png>
+Package pdftex.def Info: Assets/fcntl.png  used on input line 179.
+(pdftex.def)             Requested size: 452.9679pt x 74.98647pt.
+ [8 <./Assets/circuit.png> <./Assets/fcntl.png>] [9]
+<Assets/TCP.png, id=258, 245.11575pt x 64.44075pt>
+File: Assets/TCP.png Graphic file (type png)
+<use Assets/TCP.png>
+Package pdftex.def Info: Assets/TCP.png  used on input line 198.
+(pdftex.def)             Requested size: 271.7835pt x 71.45729pt.
+ [10 <./Assets/TCP.png>]
+<Assets/Particles.png, id=265, 194.52675pt x 106.59825pt>
+File: Assets/Particles.png Graphic file (type png)
+<use Assets/Particles.png>
+Package pdftex.def Info: Assets/Particles.png  used on input line 216.
+(pdftex.def)             Requested size: 226.48395pt x 124.11598pt.
+ [11 <./Assets/Particles.png>]
+<Assets/Paint.png, id=272, 195.73125pt x 110.21175pt>
+File: Assets/Paint.png Graphic file (type png)
+<use Assets/Paint.png>
+Package pdftex.def Info: Assets/Paint.png  used on input line 224.
+(pdftex.def)             Requested size: 226.48395pt x 127.53459pt.
+
+[12 <./Assets/Paint.png>]
+<Assets/FacialRecognition.png, id=279, 249.93375pt x 166.82326pt>
+File: Assets/FacialRecognition.png Graphic file (type png)
+<use Assets/FacialRecognition.png>
+Package pdftex.def Info: Assets/FacialRecognition.png  used on input line 247.
+(pdftex.def)             Requested size: 181.18439pt x 120.93994pt.
+ [13 <./Assets/FacialRecognition.png>]
+<Assets/Face.png, id=287, 340.8735pt x 193.32225pt>
+File: Assets/Face.png Graphic file (type png)
+<use Assets/Face.png>
+Package pdftex.def Info: Assets/Face.png  used on input line 262.
+(pdftex.def)             Requested size: 181.18439pt x 102.75824pt.
+ [14 <./Assets/Face.png>] [15]
+<Assets/PCB.png, id=298, 770.88pt x 511.9125pt>
+File: Assets/PCB.png Graphic file (type png)
+<use Assets/PCB.png>
+Package pdftex.def Info: Assets/PCB.png  used on input line 290.
+(pdftex.def)             Requested size: 226.48395pt x 150.3958pt.
+ [16 <./Assets/PCB.png>] [17]
+Overfull \hbox (14.48216pt too wide) in paragraph at lines 316--317
+\OT1/cmr/m/n/10 to-gether. Uti-liz-ing our GitHub repos-i-tory which can be fou
+nd at [][]https://github.com/patrickchau/EE180DB-
+ []
+
+[18]
+Overfull \hbox (38.3804pt too wide) in paragraph at lines 328--330
+\OT1/cmr/m/n/10 [3] Ozzmaker, Berry-IMU, (2019), GitHub repos-i-tory, [On-line]
+ Avail-able: https://github.com/ozzmaker/BerryIMU 
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 363.
+[19]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 363.
+ (Report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 363.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 363.
+Package rerunfilecheck Info: File `Report.out' has not changed.
+(rerunfilecheck)             Checksum: ADD7FBCFCBD4D0ED825F1B3B58BBBD04;2306.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 363.
+ ) 
+Here is how much of TeX's memory you used:
+ 6554 strings out of 492895
+ 97491 string characters out of 3133479
+ 205858 words of memory out of 3000000
+ 10301 multiletter control sequences out of 15000+200000
+ 7895 words of font info for 28 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 28i,7n,32p,1690b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb>
+Output written on Report.pdf (19 pages, 3887971 bytes).
+PDF statistics:
+ 362 PDF objects out of 1000 (max. 8388607)
+ 73 named destinations out of 1000 (max. 500000)
+ 366 words of extra memory for PDF output out of 10000 (max. 10000000)
+

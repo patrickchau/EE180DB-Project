@@ -1,0 +1,35 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Basic Design}{}% 2
+\BOOKMARK [1][-]{section.3}{UI and Preliminary Server Work \(Xilai\)}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Navigation}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Audio}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Primitive Server}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{Controllers, Server, and Unity \(Joey\)}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Hardware}{section.4}% 8
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Parts List}{subsection.4.1}% 9
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Circuit Schematic}{subsection.4.1}% 10
+\BOOKMARK [2][-]{subsection.4.2}{Converting Hardware Token to Controller}{section.4}% 11
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Hardware Token File Change Log}{subsection.4.2}% 12
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Motion Detector.c and .h}{subsection.4.2}% 13
+\BOOKMARK [2][-]{subsection.4.3}{Server client Architecture}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.4}{Unity Design}{section.4}% 15
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Power Ups}{subsection.4.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.4.2}{Scene Design}{subsection.4.4}% 17
+\BOOKMARK [1][-]{section.5}{Speech Detection \(Jorge\)}{}% 18
+\BOOKMARK [1][-]{section.6}{Facial Detection \(Patrick\)}{}% 19
+\BOOKMARK [1][-]{section.7}{Encountered Issues and Workarounds}{}% 20
+\BOOKMARK [2][-]{subsection.7.1}{Hardware Failures}{section.7}% 21
+\BOOKMARK [2][-]{subsection.7.2}{Facial Detection}{section.7}% 22
+\BOOKMARK [2][-]{subsection.7.3}{Speech Detection}{section.7}% 23
+\BOOKMARK [2][-]{subsection.7.4}{End Scene}{section.7}% 24
+\BOOKMARK [1][-]{section.8}{Future Plans}{}% 25
+\BOOKMARK [2][-]{subsection.8.1}{3D Printed Case}{section.8}% 26
+\BOOKMARK [2][-]{subsection.8.2}{PCB}{section.8}% 27
+\BOOKMARK [2][-]{subsection.8.3}{More Levels}{section.8}% 28
+\BOOKMARK [2][-]{subsection.8.4}{Option for Number of Players}{section.8}% 29
+\BOOKMARK [2][-]{subsection.8.5}{Additional PowerUps}{section.8}% 30
+\BOOKMARK [1][-]{section.9}{Experimental Verification}{}% 31
+\BOOKMARK [2][-]{subsection.9.1}{Speech}{section.9}% 32
+\BOOKMARK [2][-]{subsection.9.2}{Facial Detection}{section.9}% 33
+\BOOKMARK [1][-]{section.10}{Conclusion}{}% 34
+\BOOKMARK [1][-]{section.11}{References}{}% 35
